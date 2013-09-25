@@ -23,7 +23,6 @@
  */
 package com.kinetic.inventory.config;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -71,7 +70,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void registerAuthentication(AuthenticationManagerBuilder auth) throws Exception {
         auth.inMemoryAuthentication()
-                .withUser("admin").password("admin").roles("ADMIN", "USER");
+                .withUser("admin").password("admin").roles("ADMIN", "USER")
+                .and()
+                .withUser("test").password("test").roles("USER")
+                ;
 
 
     }

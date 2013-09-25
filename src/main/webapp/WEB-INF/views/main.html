@@ -41,7 +41,7 @@ THE SOFTWARE.
     </head>
     <body>
 
-        <header class="navbar navbar-fixed-top" role="banner" th:fragment='navigation'>
+        <header class="navbar navbar-inverse navbar-fixed-top" role="banner" th:fragment='navigation(activeMenu)'>
             <div class="container">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -54,8 +54,7 @@ THE SOFTWARE.
                 </div>
                 <nav class="collapse navbar-collapse" role="navigation">
                     <ul class="nav navbar-nav">
-                        <li th:class="${home}"><a href="#" th:href="@{/}" th:text="#{home.label}">Home</a></li>
-                        <li th:class="${domainMenu}"><a href="#" th:href="@{/domain}" th:text="#{domain.list.label}">Domains</a></li>
+                        <li th:class="${activeMenu} == 'home' ? 'active'"><a href="#" th:href="@{/}" th:text="#{home.label}">Home</a></li>
                     </ul>
                 </nav>
             </div>

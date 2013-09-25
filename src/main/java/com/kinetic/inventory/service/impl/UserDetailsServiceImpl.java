@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2013 Southwestern Adventist University.
+ * Copyright 2013 J. David Mendoza <jdmendoza@swau.edu>.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -21,44 +21,29 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.kinetic.inventory.config;
 
-import javax.servlet.Filter;
-import org.springframework.core.annotation.Order;
-import org.springframework.orm.hibernate3.support.OpenSessionInViewFilter;
-import org.springframework.web.filter.CharacterEncodingFilter;
-import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
+package com.kinetic.inventory.service.impl;
+
+import com.kinetic.inventory.dao.UserDao;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
 
 /**
  *
  * @author J. David Mendoza <jdmendoza@swau.edu>
  */
-@Order(2)
-public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
+@Service
+public class UserDetailsServiceImpl implements UserDetailsService {
 
+    @Autowired
+    private UserDao userDao;
+    
     @Override
-    protected Class<?>[] getRootConfigClasses() {
-        return new Class<?>[]{SecurityConfig.class, DataConfig.class, MailConfig.class, ComponentConfig.class};
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        return userDao.getUser(username);
     }
-
-    @Override
-    protected Class<?>[] getServletConfigClasses() {
-        return new Class<?>[]{WebConfig.class};
-    }
-
-    @Override
-    protected String[] getServletMappings() {
-        return new String[]{"/"};
-    }
-
-    @Override
-    protected Filter[] getServletFilters() {
-
-        CharacterEncodingFilter characterEncodingFilter = new CharacterEncodingFilter();
-        characterEncodingFilter.setEncoding("UTF-8");
-        
-        return new Filter[]{characterEncodingFilter};
-        
-    }
-
+    
 }

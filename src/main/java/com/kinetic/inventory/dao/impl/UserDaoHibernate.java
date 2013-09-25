@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2013 Southwestern Adventist University.
+ * Copyright 2013 J. David Mendoza <jdmendoza@swau.edu>.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -21,44 +21,46 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.kinetic.inventory.config;
 
-import javax.servlet.Filter;
-import org.springframework.core.annotation.Order;
-import org.springframework.orm.hibernate3.support.OpenSessionInViewFilter;
-import org.springframework.web.filter.CharacterEncodingFilter;
-import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
+package com.kinetic.inventory.dao.impl;
+
+import com.kinetic.inventory.dao.BaseDao;
+import com.kinetic.inventory.dao.UserDao;
+import com.kinetic.inventory.model.Role;
+import com.kinetic.inventory.model.User;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
  * @author J. David Mendoza <jdmendoza@swau.edu>
  */
-@Order(2)
-public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
+@Repository
+@Transactional
+public class UserDaoHibernate extends BaseDao implements UserDao {
 
     @Override
-    protected Class<?>[] getRootConfigClasses() {
-        return new Class<?>[]{SecurityConfig.class, DataConfig.class, MailConfig.class, ComponentConfig.class};
+    @Transactional(readOnly = true)
+    public User getUser(String username) {
+        return (User) currentSession().get(User.class, username);
     }
 
     @Override
-    protected Class<?>[] getServletConfigClasses() {
-        return new Class<?>[]{WebConfig.class};
+    @Transactional(readOnly = true)
+    public Role getRole(String authority) {
+        return (Role) currentSession().get(Role.class, authority);
     }
 
     @Override
-    protected String[] getServletMappings() {
-        return new String[]{"/"};
+    public Role createRole(Role role) {
+        currentSession().save(role);
+        return role;
     }
 
     @Override
-    protected Filter[] getServletFilters() {
-
-        CharacterEncodingFilter characterEncodingFilter = new CharacterEncodingFilter();
-        characterEncodingFilter.setEncoding("UTF-8");
-        
-        return new Filter[]{characterEncodingFilter};
-        
+    public User createUser(User user) {
+        currentSession().save(user);
+        return user;
     }
-
+    
 }

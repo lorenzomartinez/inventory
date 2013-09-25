@@ -140,7 +140,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         OpenSessionInViewInterceptor openSessionInViewInterceptor = new OpenSessionInViewInterceptor();
         openSessionInViewInterceptor.setSessionFactory(sessionFactory);
         registry.addInterceptor(localeChangeInterceptor());
-        registry.addInterceptor((HandlerInterceptor) openSessionInViewInterceptor);
+        registry.addWebRequestInterceptor(openSessionInViewInterceptor);
     }
 
     @Override

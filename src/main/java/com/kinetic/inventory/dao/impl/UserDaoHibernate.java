@@ -21,13 +21,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.kinetic.inventory.dao.impl;
 
 import com.kinetic.inventory.dao.BaseDao;
 import com.kinetic.inventory.dao.UserDao;
 import com.kinetic.inventory.model.Role;
 import com.kinetic.inventory.model.User;
+import java.util.List;
+import org.hibernate.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -62,5 +63,10 @@ public class UserDaoHibernate extends BaseDao implements UserDao {
         currentSession().save(user);
         return user;
     }
-    
+
+    @Override
+    public List<User> list() {
+        Query query = currentSession().createQuery("select u from User as u where u.accountExpired=false");
+        return query.list();
+    }
 }

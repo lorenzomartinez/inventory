@@ -26,6 +26,7 @@ package com.kinetic.inventory.dao;
 
 import com.kinetic.inventory.model.Role;
 import com.kinetic.inventory.model.User;
+import java.util.List;
 
 /**
  *
@@ -40,4 +41,6 @@ public interface UserDao {
     public Role createRole(Role role);
 
     public User createUser(User user);
+
+    public List<User> list();
 }

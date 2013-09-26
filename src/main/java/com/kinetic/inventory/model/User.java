@@ -206,7 +206,7 @@ public class User implements Serializable, UserDetails {
     public void addRole(Role role) {
         this.roles.add(role);
     }
-
+    
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         Set<GrantedAuthority> authorities = new LinkedHashSet<>();
@@ -232,6 +232,14 @@ public class User implements Serializable, UserDetails {
     @Override
     public boolean isEnabled() {
         return enabled;
+    }
+    
+    public String getFullName() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(firstName);
+        sb.append(" ");
+        sb.append(lastName);
+        return sb.toString();
     }
 
     @Override

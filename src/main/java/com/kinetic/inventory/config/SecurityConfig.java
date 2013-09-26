@@ -23,6 +23,7 @@
  */
 package com.kinetic.inventory.config;
 
+import com.kinetic.inventory.utils.LoginHandler;
 import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -51,6 +52,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private UserDetailsService userDetailsService;
     @Autowired
     private DataSource dataSource;
+    @Autowired
+    private LoginHandler loginHandler;
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -80,6 +83,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .formLogin()
                 .loginPage("/login")
+                .successHandler(loginHandler)
                 .permitAll()
                 .and()
                 .logout().logoutUrl("/logout").logoutSuccessUrl("/").invalidateHttpSession(true);

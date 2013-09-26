@@ -48,6 +48,7 @@ public class LoginHandler extends SavedRequestAwareAuthenticationSuccessHandler 
         super.onAuthenticationSuccess(request, response, authentication);
         User user = (User) authentication.getPrincipal();
         log.debug("{} has logged in", user.getUsername());
+        log.debug("{}",user.getFullName());
         request.getSession().setAttribute(Constants.LOGGED_USER, user.getFullName());
     }
 

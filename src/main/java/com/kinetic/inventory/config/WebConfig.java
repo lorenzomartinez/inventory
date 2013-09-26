@@ -28,6 +28,8 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Set;
 import org.hibernate.SessionFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
@@ -41,7 +43,6 @@ import org.springframework.validation.Validator;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import org.springframework.web.multipart.MultipartResolver;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
-import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
@@ -63,6 +64,8 @@ import org.thymeleaf.templateresolver.ServletContextTemplateResolver;
 @EnableWebMvc
 @ComponentScan(basePackages = {"com.kinetic.inventory.web"})
 public class WebConfig extends WebMvcConfigurerAdapter {
+    
+    private static final Logger log = LoggerFactory.getLogger(WebConfig.class);
 
     @Autowired
     private SessionFactory sessionFactory;
@@ -137,10 +140,12 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
+        log.debug("Adding OpenSessionInViewInterceptor");
         OpenSessionInViewInterceptor openSessionInViewInterceptor = new OpenSessionInViewInterceptor();
         openSessionInViewInterceptor.setSessionFactory(sessionFactory);
-        registry.addInterceptor(localeChangeInterceptor());
         registry.addWebRequestInterceptor(openSessionInViewInterceptor);
+
+        registry.addInterceptor(localeChangeInterceptor());
     }
 
     @Override

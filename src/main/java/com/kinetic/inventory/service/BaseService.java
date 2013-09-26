@@ -22,30 +22,17 @@
  * THE SOFTWARE.
  */
 
-package com.kinetic.inventory.service.impl;
+package com.kinetic.inventory.service;
 
-import com.kinetic.inventory.dao.UserDao;
-import com.kinetic.inventory.service.BaseService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.stereotype.Service;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  *
  * @author J. David Mendoza <jdmendoza@swau.edu>
  */
-@Service
-public class UserDetailsServiceImpl extends BaseService implements UserDetailsService {
+public abstract class BaseService {
+    
+    protected final transient Logger log = LoggerFactory.getLogger(getClass());
 
-    @Autowired
-    private UserDao userDao;
-    
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        log.debug("Load user by username");
-        return userDao.getUser(username);
-    }
-    
 }

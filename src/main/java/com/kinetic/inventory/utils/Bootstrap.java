@@ -58,12 +58,19 @@ public class Bootstrap implements ApplicationListener<ContextRefreshedEvent> {
             adminRole = userDao.createRole(adminRole);
         }
         
+        Role userRole = userDao.getRole("ROLE_USER");
+        if (userRole == null) {
+            userRole = new Role("ROLE_USER");
+            userRole = userDao.createRole(userRole);
+        }
+        
         log.info("Validating Users");
         User admin = userDao.getUser("admin@kinetic.com");
         if (admin == null) {
             String password = passwordEncoder.encode("admin");
             admin = new User("admin@kinetic.com", password, "Admin", "User");
             admin.addRole(adminRole);
+            admin.addRole(userRole);
             userDao.createUser(admin);
         }
         

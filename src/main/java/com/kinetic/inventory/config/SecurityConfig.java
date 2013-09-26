@@ -98,7 +98,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authenticationProvider(authenticationProvider)
                 .jdbcAuthentication()
                 .dataSource(dataSource)
-                ;
+                .usersByUsernameQuery("select username, password, enabled, accountexpired, accountlocked, credentialsexpired, firstname, lastname from users where username = 'admin@kinetic.com'")
+                .authoritiesByUsernameQuery("select users_username as username, roles_authority as authority from users_roles where users_username = ?");
 
     }
 

@@ -25,7 +25,6 @@ package com.kinetic.inventory.config;
 
 import javax.servlet.Filter;
 import org.springframework.core.annotation.Order;
-import org.springframework.orm.hibernate3.support.OpenSessionInViewFilter;
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 

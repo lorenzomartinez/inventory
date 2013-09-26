@@ -74,6 +74,7 @@ public class DataConfig {
 
     @Bean
     public SessionFactory sessionFactory() {
+        log.debug("Returning initialized sessionFactory");
 
         LocalSessionFactoryBean factoryBean;
         try {

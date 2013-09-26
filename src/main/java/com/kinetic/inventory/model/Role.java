@@ -25,6 +25,7 @@ package com.kinetic.inventory.model;
 
 import java.io.Serializable;
 import java.util.Objects;
+import javax.persistence.Cacheable;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -35,6 +36,7 @@ import org.springframework.security.core.GrantedAuthority;
  * @author J. David Mendoza <jdmendoza@swau.edu>
  */
 @Entity
+@Cacheable
 @Table(name = "roles")
 public class Role implements Serializable, GrantedAuthority {
 

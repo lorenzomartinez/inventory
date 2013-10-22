@@ -67,8 +67,8 @@ public class Bootstrap implements ApplicationListener<ContextRefreshedEvent> {
         log.info("Validating Users");
         User admin = userDao.getUser("admin@kinetic.com");
         if (admin == null) {
-            String password = passwordEncoder.encode("admin");
-            admin = new User("admin@kinetic.com", password, "Admin", "User");
+//            String password = passwordEncoder.encode("admin");
+            admin = new User("admin@kinetic.com", "admin", "Admin", "User");
             admin.addRole(adminRole);
             admin.addRole(userRole);
             userDao.createUser(admin);

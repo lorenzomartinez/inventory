@@ -29,6 +29,8 @@ import com.kinetic.inventory.model.Role;
 import com.kinetic.inventory.model.User;
 import java.util.List;
 import org.hibernate.Query;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -40,10 +42,15 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class UserDaoHibernate extends BaseDao implements UserDao {
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
     @Override
     @Transactional(readOnly = true)
     public User getUser(String username) {
-        return (User) currentSession().get(User.class, username);
+        User user = (User) currentSession().get(User.class, username);
+//        log.debug("user: {}", user);
+        return user;
     }
 
     @Override
@@ -60,6 +67,8 @@ public class UserDaoHibernate extends BaseDao implements UserDao {
 
     @Override
     public User createUser(User user) {
+        String hashedPassword = passwordEncoder.encode(user.getPassword());
+        user.setPassword(hashedPassword);
         currentSession().save(user);
         return user;
     }
@@ -68,5 +77,10 @@ public class UserDaoHibernate extends BaseDao implements UserDao {
     public List<User> list() {
         Query query = currentSession().createQuery("select u from User as u where u.accountExpired=false");
         return query.list();
+    }
+
+    @Override
+    public void deleteUser(User user) {
+        currentSession().delete(user);
     }
 }

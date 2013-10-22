@@ -55,6 +55,8 @@ THE SOFTWARE.
                 <nav class="collapse navbar-collapse" role="navigation">
                     <ul class="nav navbar-nav">
                         <li th:class="${activeMenu} == 'home' ? 'active'"><a href="#" th:href="@{/}" th:text="#{home.label}">Home</a></li>
+                        <li th:class="${activeMenu} == 'admin/user' ? 'active'"><a href="#" th:href="@{/admin/user}" th:text="#{list.adduser}">View Users</a></li>
+                        <li><a href="#" th:href="@{/logout}" th:text="#{home.logout.label}">Logout</a></li>
                     </ul>
                 </nav>
             </div>
@@ -64,11 +66,10 @@ THE SOFTWARE.
             <div class="row">
                 <div class="col-sm-12">
                     <h1 th:text="#{welcome.label}">Welcome</h1>
-
                 </div>
             </div>
         </div>
-
+<!--
         <footer class="footer" role="contentinfo" th:fragment="footer" >
             <div class="container">
                 <div class="row">
@@ -77,7 +78,7 @@ THE SOFTWARE.
                     </div>
                 </div>
             </div>
-        </footer>
+        </footer>-->
 
         <div th:fragment="scripts" th:remove="tag">
             <script src="../../resources/js/jquery-1.10.1.min.js" th:src="@{//code.jquery.com/jquery-1.10.1.min.js}"></script>

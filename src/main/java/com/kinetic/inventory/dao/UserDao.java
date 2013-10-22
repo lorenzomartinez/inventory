@@ -41,6 +41,8 @@ public interface UserDao {
     public Role createRole(Role role);
 
     public User createUser(User user);
+    
+    public void deleteUser(User user);
 
     public List<User> list();
 }

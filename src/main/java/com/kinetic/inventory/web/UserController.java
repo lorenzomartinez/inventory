@@ -24,14 +24,18 @@
 package com.kinetic.inventory.web;
 
 import com.kinetic.inventory.dao.UserDao;
+import com.kinetic.inventory.model.User;
+import java.security.Principal;
+import javax.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
  *
@@ -40,47 +44,53 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/admin/user")
 public class UserController {
-        private static final Logger log = LoggerFactory.getLogger(UserController.class);
-        @Autowired
-        private UserDao userDao;
+
+    private static final Logger log = LoggerFactory.getLogger(UserController.class);
+    @Autowired
+    private UserDao userDao;
 
     @RequestMapping(value = {"", "/list"})
-    public String list(Model model) {
+    private String list(Model model) {
 //        List articles = articleDao.list();
-        model.addAttribute("user", userDao.list());
+        model.addAttribute("list", userDao.list());
         return "admin/user/list";
     }
-    
-    
-            
-    
-        
-//            @RequestMapping(value={"","/create"})
-//    public String createUser(Model model){
-//                log.debug("new user");
-//                User user = new User();
-//                model.addAttribute("user", user);
-//                model.addAttribute("roles", role);
-//        user = userDao.createUser(user);
-//  
-//        redirectAttributes.addFlashAttribute("message", "The User "+user.getFullName()+" has been created");
-//        
-//        return "redirect:/user/see/"+user.getUsername();    
-//    }
-//                @RequestMapping("/nuevo")
-//    public String nuevo(Model modelo) {
-//        log.debug("Nuevo usuario");
-//        List<Rol> roles = obtieneRoles();
-//        Usuario usuario = new Usuario();
-//        modelo.addAttribute("usuario", usuario);
-//        modelo.addAttribute("roles", roles);
-//        List<Ejercicio> ejercicios = usuarioDao.obtieneEjercicios(ambiente
-//                .obtieneUsuario().getEmpresa().getOrganizacion().getId());
-//        modelo.addAttribute("ejercicios", ejercicios);
-//        modelo.addAttribute("enviaCorreo", Boolean.TRUE);
-//        return "admin/usuario/nuevo";
-//    }
-            
-        
-    
+
+    @RequestMapping("/newUser")
+    public String newUser(Model model) {
+        model.addAttribute("user", new User());
+        return "admin/user/newUser";
+    }
+
+    @RequestMapping("/create")
+    public String createUser(@Valid User user, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+        if (bindingResult.hasErrors()) {
+            return "admin/user/newUser";
+        }
+        log.debug("{}", user);
+//                @Autowired
+//                String password = passwordEncoder.encode();
+        user = userDao.createUser(user);
+
+        redirectAttributes.addFlashAttribute("message", "The User " + user.getFullName() + " has been created");
+
+        return "redirect:/admin/user/see/" + user.getUsername()+"/";
+    }
+
+    @RequestMapping("/see/{username}")
+    public String see(@PathVariable String username, Model model) {
+        User user = userDao.getUser(username);
+        log.debug("{}", user);
+        model.addAttribute("user", user);
+        return "admin/user/see";
+    }
+
+    @RequestMapping("/delete/{username}/")
+    public String delete(@PathVariable String username, Model model, RedirectAttributes redirectAttributes) {
+         log.debug("deleting" );
+        User user = userDao.getUser(username);
+        userDao.deleteUser(user);
+        redirectAttributes.addFlashAttribute("message", "The user " + username + " has been deleted");
+        return "redirect:/admin/user";
+    }
 }

@@ -56,6 +56,7 @@ THE SOFTWARE.
                     <ul class="nav navbar-nav">
                         <li th:class="${activeMenu} == 'home' ? 'active'"><a href="#" th:href="@{/}" th:text="#{home.label}">Home</a></li>
                         <li th:class="${activeMenu} == 'admin/user' ? 'active'"><a href="#" th:href="@{/admin/user}" th:text="#{list.adduser}">View Users</a></li>
+                        <li th:class="${activeMenu} == 'products' ? 'active'"><a href="#" th:href="@{/products}" th:text="#{list.products}">Products</a></li>
                         <li><a href="#" th:href="@{/logout}" th:text="#{home.logout.label}">Logout</a></li>
                     </ul>
                 </nav>

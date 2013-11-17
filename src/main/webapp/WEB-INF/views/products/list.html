@@ -40,35 +40,39 @@ THE SOFTWARE.
 
     </head>
     <body>
-        <header class="navbar navbar-inverse navbar-fixed-top" role="banner" th:substituteby="/main :: navigation('admin/user')">
+        <header class="navbar navbar-inverse navbar-fixed-top" role="banner" th:substituteby="/main :: navigation('products')">
         </header>
 
         <div class="container">
             <div class="row">
                 <div class="col-sm-12">
-                    <h1 th:text="#{user.list.label}">User List</h1>
+                    <h1 th:text="#{products.list.label}">Products List</h1>
                     <div class="table-responsive">
                         <table class="table table-striped table-hover">
                             <thead>
                                 <tr>
-                                    <th th:text="#{user.list.delete}">Delete</th>
-                                    <th th:text="#{user.list.username}">E-mail/Username</th>
-                                    <th th:text="#{user.list.firstName}">First Name</th>
-                                    <th th:text="#{user.list.lastName}">Last Name</th>
+                                    <th th:text="#{products.list.delete}">Delete</th>
+                                    <th th:text="#{products.list.itemID}">Item ID</th>
+                                    <th th:text="#{products.list.manufacturer}">Manufacturer</th>
+                                    <th th:text="#{products.list.model}">Model</th>
+                                    <th th:text="#{products.list.cost}">Cost</th>
+                                    <th th:text="#{products.list.listPrice}">List Price</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr th:each="user : ${list}">
-                                    <td><a href="#" th:href="@{'/admin/user/delete/'+${user.username}+'/'}" class="btn btn-danger"><i class="icon-minus"></i></a></td>
-                                    <td th:text="${user.username}">Username/E-mail</td>
-                                    <td th:text="${user.firstName}">First Name</td>
-                                    <td th:text="${user.lastName}">Last Name</td>
+                                <tr th:each="product : ${list}">
+                                    <td><a href="#" th:href="@{'/products/delete/'+${product.itemID}+'/'}" class="btn btn-danger"><i class="icon-minus"></i></a></td>
+                                    <td th:text="${product.itemID}">Item ID</td>
+                                    <td th:text="${product.manufacturer}">Manufacturer</td>
+                                    <td th:text="${product.model}">Model</td>
+                                    <td th:text="${product.cost}">Cost</td>
+                                    <td th:text="${product.listPrice}">List Price</td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
                     <div class="well">
-                        <a href="#" th:href="@{/admin/user/newUser/}" class="btn btn-primary"><i class="icon-plus"></i><span th:text="' '+#{new.user}">Add User</span></a>
+                        <a href="#" th:href="@{/products/newProduct/}" class="btn btn-primary"><i class="icon-plus"></i><span th:text="' '+#{new.product}">Add User</span></a>
                     </div>
                 </div>
             </div>

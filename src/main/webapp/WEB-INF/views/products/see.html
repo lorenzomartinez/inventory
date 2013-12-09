@@ -42,37 +42,29 @@ THE SOFTWARE.
     <body>
         <header class="navbar navbar-inverse navbar-fixed-top" role="banner" th:substituteby="/main :: navigation('products')">
         </header>
-        
-<!--                                        <th th:text="#{products.list.delete}">Delete</th>
-                                    <th th:text="#{products.list.itemID}">Item ID</th>
-                                    <th th:text="#{products.list.manufacturer}">Manufacturer</th>
-                                    <th th:text="#{products.list.model}">Model</th>
-                                    <th th:text="#{products.list.cost}">Cost</th>
-                                    <th th:text="#{products.list.listPrice}">List Price</th>    -->
-
         <div class="container">
             <div class="row">
                 <div class="col-sm-12">
-                    <h1 th:text="${user.firstName}+' has been created'">User</h1>
+                    <h1 th:text="'Item '+${product.model}+' has been created'">Item</h1>
                 </div>
                 <div class="row-fluid">
-                    <h4>Email</h4>
-                    <h4 th:text="${user.username}">Email</h4>
+                    <h4>Manufacturer</h4>
+                    <h4 th:text="${product.manufacturer}">Manufacturer</h4>
                 </div>
                 <div class="row-fluid">
-                    <h4>First Name</h4>
-                    <h4 th:text="${user.firstName}">FirstName</h4>
+                    <h4>Model</h4>
+                    <h4 th:text="${product.model}">Model</h4>
                 </div>
                 <div>
-                    <h4>Last Name</h4>
-                    <h4 th:text="${user.lastName}">LastName</h4>
+                    <h4>Cost</h4>
+                    <h4 th:text="${product.cost}">Cost</h4>
                 </div>
                 <div>
-                    <h4>Roles</h4>
-                    <h4 th:text="${user.roles}">Role</h4>
+                    <h4>List Price</h4>
+                    <h4 th:text="${product.listPrice}">List Price</h4>
                     
                     <div class="well">
-                        <a href="#" th:href="@{/admin/user/}" class="btn btn-primary"><i class="icon-list"></i><span th:text="' '+#{user.list.label}">View Lists</span></a>
+                        <a href="#" th:href="@{/products/}" class="btn btn-primary"><i class="icon-list"></i><span th:text="' '+#{products.list.label}">View Lists</span></a>
                     </div>
                 </div>
             </div>

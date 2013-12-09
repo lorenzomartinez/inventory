@@ -25,7 +25,6 @@ package com.kinetic.inventory.web;
 
 import com.kinetic.inventory.dao.UserDao;
 import com.kinetic.inventory.model.User;
-import java.security.Principal;
 import javax.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

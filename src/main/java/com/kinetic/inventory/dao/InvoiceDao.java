@@ -23,22 +23,18 @@
  */
 package com.kinetic.inventory.dao;
 
-import com.kinetic.inventory.model.Products;
-import java.util.List;
+import com.kinetic.inventory.model.Invoice;
 
 /**
  *
  * @author martinezl
  */
-public interface ProductsDao {
+public interface InvoiceDao {
     
-    public Products getProduct(Long id);
+    public Invoice createInvoice();
+    public Invoice getInvoice();
+    public Invoice deleteInvoice();
     
-    public Products createProduct(Products product);
     
-    public void deleteProduct(Products product);
     
-    public Products editProduct(Products product);
-    
-    public List<Products> list();
 }

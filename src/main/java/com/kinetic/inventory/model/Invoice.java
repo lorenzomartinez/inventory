@@ -25,57 +25,44 @@ package com.kinetic.inventory.model;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.persistence.Version;
 import javax.validation.constraints.NotNull;
-import org.hibernate.validator.constraints.NotBlank;
 
 /**
  *
  * @author martinezl
  */
 @Entity
-@Table(name = "products")
-public class Products implements Serializable {
+@Table(name = "invoice")
+public class Invoice implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Version
     private Integer version;
-    @NotBlank
-    @Column(nullable = false, length = 20)
-    private String manufacturer;
-    @NotBlank
-    @Column(nullable = false, length = 50)
-    private String model;
-    @NotBlank
-    @Column(nullable = false, length = 256)
-    private String description;
     @NotNull
-    @Column(nullable = false, length = 12, scale = 2, precision = 8)
-    private BigDecimal cost;
-    @NotNull
-    @Column(nullable = false, length = 12, scale = 2, precision = 8)
-    private BigDecimal listPrice;
+    @Column(nullable = false, length = 6)
+    private Integer invoiceID;
+    @Temporal(TemporalType.DATE)
+    @Column(nullable = false, name = "dateCreated")
+    private Date dateCreated;
+    @NotNull   
+    @Column(nullable = false, length = 20, scale = 2, precision = 8)
+    private BigDecimal total;
 
-    public Products() {
+    public Invoice(){
     }
-
-    public Products(Long id, String manufacturer, String model,
-            String description, BigDecimal listPrice) {
-        this.id = id;
-        this.manufacturer = manufacturer;
-        this.model = model;
-        this.description = description;
-        this.listPrice = listPrice;
-    }
-
+    
     /**
      * @return the id
      */
@@ -104,74 +91,46 @@ public class Products implements Serializable {
         this.version = version;
     }
 
-
     /**
-     * @return the manufacturer
+     * @return the invoiceID
      */
-    public String getManufacturer() {
-        return manufacturer;
+    public Integer getInvoiceID() {
+        return invoiceID;
     }
 
     /**
-     * @param manufacturer the manufacturer to set
+     * @param invoiceID the invoiceID to set
      */
-    public void setManufacturer(String manufacturer) {
-        this.manufacturer = manufacturer;
+    public void setInvoiceID(Integer invoiceID) {
+        this.invoiceID = invoiceID;
     }
 
     /**
-     * @return the model
+     * @return the dateCreated
      */
-    public String getModel() {
-        return model;
+    public Date getDateCreated() {
+        return dateCreated;
     }
 
     /**
-     * @param model the model to set
+     * @param dateCreated the dateCreated to set
      */
-    public void setModel(String model) {
-        this.model = model;
+    public void setDateCreated(Date dateCreated) {
+        this.dateCreated = dateCreated;
     }
 
     /**
-     * @return the description
+     * @return the total
      */
-    public String getDescription() {
-        return description;
+    public BigDecimal getTotal() {
+        return total;
     }
 
     /**
-     * @param description the description to set
+     * @param total the total to set
      */
-    public void setDescription(String description) {
-        this.description = description;
+    public void setTotal(BigDecimal total) {
+        this.total = total;
     }
-
-    /**
-     * @return the cost
-     */
-    public BigDecimal getCost() {
-        return cost;
-    }
-
-    /**
-     * @param cost the cost to set
-     */
-    public void setCost(BigDecimal cost) {
-        this.cost = cost;
-    }
-
-    /**
-     * @return the listPrice
-     */
-    public BigDecimal getListPrice() {
-        return listPrice;
-    }
-
-    /**
-     * @param listPrice the listPrice to set
-     */
-    public void setListPrice(BigDecimal listPrice) {
-        this.listPrice = listPrice;
-    }
+    
 }

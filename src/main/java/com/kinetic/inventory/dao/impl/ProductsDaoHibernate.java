@@ -44,8 +44,8 @@ public class ProductsDaoHibernate extends BaseDao implements ProductsDao {
 
     @Override
     @Transactional(readOnly = true)
-    public Products getProduct(Integer itemID) {
-        Products product = (Products) currentSession().get(Products.class, products);
+    public Products getProduct(Long id) {
+        Products product = (Products) currentSession().get(Products.class, id);
         return product;
     }
 

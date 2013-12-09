@@ -49,7 +49,7 @@ public class ProductsController {
     private ProductsDao productsDao;
     
     @RequestMapping(value = {"", "/list"})
-    private String list(Model model){
+    public String list(Model model){
         model.addAttribute("list", productsDao.list());
         return "/products/list";
     }
@@ -67,21 +67,21 @@ public class ProductsController {
         }
         products = productsDao.createProduct(products);
         redirectAttributes.addFlashAttribute("message", "The Product " + products.getModel() + " has been created");
-        return "redirect:/products/see/" + products.getItemID()+"/";
+        return "redirect:/products/see/" + products.getId()+"/";
     }
     //see
-    @RequestMapping("/see/{itemID}")
-    public String see(@PathVariable Integer itemID, Model model) {
-        Products product = productsDao.getProduct(itemID);
+    @RequestMapping("/see/{id}")
+    public String see(@PathVariable Long id, Model model) {
+        Products product = productsDao.getProduct(id);
         model.addAttribute("product", product);
         return "/products/see";
     }
     //delete
-    @RequestMapping("/delete/{itemID}/")
-    public String delete(@PathVariable Integer itemID, Model model, RedirectAttributes redirectAttributes) {
-        Products product = productsDao.getProduct(itemID);
+    @RequestMapping("/delete/{id}/")
+    public String delete(@PathVariable Long id, Model model, RedirectAttributes redirectAttributes) {
+        Products product = productsDao.getProduct(id);
         productsDao.deleteProduct(product);
-        redirectAttributes.addFlashAttribute("message", "The product "+ itemID + " has been deleted");
+        redirectAttributes.addFlashAttribute("message", "The product "+ id + " has been deleted");
         return "redirect:/products/";
     }
     //update

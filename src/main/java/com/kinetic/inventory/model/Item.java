@@ -25,49 +25,39 @@ package com.kinetic.inventory.model;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.Date;
-import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.persistence.Version;
-import javax.validation.constraints.NotNull;
 
 /**
  *
  * @author martinezl
  */
 @Entity
-@Table(name = "invoice")
-public class Invoice implements Serializable {
-
+@Table
+public class Item implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Version
     private Integer version;
-    @Temporal(TemporalType.DATE)
-    @Column(nullable = false, name = "dateCreated")
-    private Date dateCreated;
-    @NotNull   
-    @Column(nullable = false, length = 20, scale = 2, precision = 8)
-    private BigDecimal total;
-    @NotNull
-    @ManyToOne
-    private Client client;
-    @OneToMany(mappedBy = "invoice")
-    private List<Item> items;
-
-    public Invoice(){
-    }
     
+    private Integer quantity;
+    @Column(nullable = false, length = 12, scale = 2, precision = 8)
+    private BigDecimal price;
+    @ManyToOne
+    private Invoice invoice;
+    @ManyToOne
+    private Products product;
+
+    public Item(){
+        
+    }
     /**
      * @return the id
      */
@@ -97,50 +87,61 @@ public class Invoice implements Serializable {
     }
 
     /**
-     * @return the dateCreated
+     * @return the quantity
      */
-    public Date getDateCreated() {
-        return dateCreated;
+    public Integer getQuantity() {
+        return quantity;
     }
 
     /**
-     * @param dateCreated the dateCreated to set
+     * @param quantity the quantity to set
      */
-    public void setDateCreated(Date dateCreated) {
-        this.dateCreated = dateCreated;
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
     }
 
     /**
-     * @return the total
+     * @return the price
      */
-    public BigDecimal getTotal() {
-        return total;
+    public BigDecimal getPrice() {
+        return price;
     }
 
     /**
-     * @param total the total to set
+     * @param price the price to set
      */
-    public void setTotal(BigDecimal total) {
-        this.total = total;
+    public void setPrice(BigDecimal price) {
+        this.price = price;
     }
 
     /**
-     * @return the clientId
+     * @return the invoice
      */
-
-
-    /**
-     * @return the items
-     */
-    public List<Item> getItems() {
-        return items;
+    public Invoice getInvoice() {
+        return invoice;
     }
 
     /**
-     * @param items the items to set
+     * @param invoice the invoice to set
      */
-    public void setItems(List<Item> items) {
-        this.items = items;
+    public void setInvoice(Invoice invoice) {
+        this.invoice = invoice;
     }
+
+    /**
+     * @return the product
+     */
+    public Products getProduct() {
+        return product;
+    }
+
+    /**
+     * @param product the product to set
+     */
+    public void setProduct(Products product) {
+        this.product = product;
+    }
+    
+    
     
 }

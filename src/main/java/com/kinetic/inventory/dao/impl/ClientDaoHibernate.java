@@ -24,9 +24,10 @@
 package com.kinetic.inventory.dao.impl;
 
 import com.kinetic.inventory.dao.BaseDao;
-import com.kinetic.inventory.dao.InvoiceDao;
-import com.kinetic.inventory.model.Invoice;
-import java.io.Serializable;
+import com.kinetic.inventory.dao.ClientDao;
+import com.kinetic.inventory.model.Client;
+import java.util.List;
+import org.hibernate.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -36,22 +37,30 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Repository
 @Transactional
-public class InvoiceDaoHibernate extends BaseDao implements InvoiceDao {
-
+public class ClientDaoHibernate extends BaseDao implements ClientDao {
 
     @Override
-    public Invoice createInvoice(Invoice invoice) {
-        currentSession().save(invoice);
-        return invoice;
+    public Client createClient(Client client) {
+        currentSession().save(client);
+        return client;
+
     }
+
     @Override
     @Transactional(readOnly = true)
-    public Invoice getInvoice(Long id) {
-        Invoice invoice = (Invoice) currentSession().get(Invoice.class, id);
-        return invoice;
+    public Client getClient(Integer id) {
+        Client client = (Client) currentSession().get(Client.class, id);
+        return client;
     }
-   @Override
-    public void deleteInvoice(Invoice invoice) {
-        currentSession().delete(invoice);
+
+    @Override
+    public void deleteClient(Client client) {
+        currentSession().delete(client);
+    }
+
+    @Override
+    public List<Client> list() {
+        Query query = currentSession().createQuery("select c from Client as c ");
+        return query.list();
     }
 }

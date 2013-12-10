@@ -26,7 +26,6 @@ package com.kinetic.inventory.dao.impl;
 import com.kinetic.inventory.dao.BaseDao;
 import com.kinetic.inventory.dao.ProductsDao;
 import com.kinetic.inventory.model.Products;
-import java.io.Serializable;
 import java.util.List;
 import org.hibernate.Query;
 import org.springframework.stereotype.Repository;

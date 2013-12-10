@@ -21,18 +21,37 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.kinetic.inventory.dao;
+package com.kinetic.inventory.dao.impl;
 
+import com.kinetic.inventory.dao.BaseDao;
+import com.kinetic.inventory.dao.InvoiceDao;
 import com.kinetic.inventory.model.Invoice;
+import java.io.Serializable;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
  * @author martinezl
  */
-public interface InvoiceDao {
-    
-    public Invoice createInvoice(Invoice invoice);
-    public Invoice getInvoice(Long id);
-    public void deleteInvoice(Invoice invoice);
-       
+@Repository
+@Transactional
+public class InvoiceDaoHibernate extends BaseDao implements InvoiceDao {
+
+
+    @Override
+    @Transactional(readOnly = true)
+    public Invoice createInvoice(Invoice invoice) {
+        currentSession().save(invoice);
+        return invoice;
+    }
+    @Override
+    public Invoice getInvoice(Long id) {
+        Invoice invoice = (Invoice) currentSession().get(Invoice.class, id);
+        return invoice;
+    }
+   @Override
+    public void deleteInvoice(Invoice invoice) {
+        currentSession().delete(invoice);
+    }
 }

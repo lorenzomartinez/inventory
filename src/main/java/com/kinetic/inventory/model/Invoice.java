@@ -50,15 +50,14 @@ public class Invoice implements Serializable {
     private Long id;
     @Version
     private Integer version;
-    @NotNull
-    @Column(nullable = false, length = 6)
-    private Integer invoiceID;
     @Temporal(TemporalType.DATE)
     @Column(nullable = false, name = "dateCreated")
     private Date dateCreated;
     @NotNull   
     @Column(nullable = false, length = 20, scale = 2, precision = 8)
     private BigDecimal total;
+    @NotNull
+    private String clientId;
 
     public Invoice(){
     }
@@ -92,20 +91,6 @@ public class Invoice implements Serializable {
     }
 
     /**
-     * @return the invoiceID
-     */
-    public Integer getInvoiceID() {
-        return invoiceID;
-    }
-
-    /**
-     * @param invoiceID the invoiceID to set
-     */
-    public void setInvoiceID(Integer invoiceID) {
-        this.invoiceID = invoiceID;
-    }
-
-    /**
      * @return the dateCreated
      */
     public Date getDateCreated() {
@@ -131,6 +116,20 @@ public class Invoice implements Serializable {
      */
     public void setTotal(BigDecimal total) {
         this.total = total;
+    }
+
+    /**
+     * @return the clientId
+     */
+    public String getClientId() {
+        return clientId;
+    }
+
+    /**
+     * @param clientId the clientId to set
+     */
+    public void setClientId(String clientId) {
+        this.clientId = clientId;
     }
     
 }

@@ -40,7 +40,6 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class ProductsDaoHibernate extends BaseDao implements ProductsDao {
 
-    private Serializable products;
 
     @Override
     @Transactional(readOnly = true)

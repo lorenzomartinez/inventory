@@ -24,7 +24,7 @@ THE SOFTWARE.
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
-    <head th:fragment='head(title)'>
+    <head th:include='/main :: head(#{user.label})'>
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
         <title th:text="|${title} - #{project.name.label}|">Main</title>
@@ -40,52 +40,49 @@ THE SOFTWARE.
 
     </head>
     <body>
-
-        <header class="navbar navbar-inverse navbar-fixed-top" role="banner" th:fragment='navigation(activeMenu)'>
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="#" th:href="@{/}" th:text='#{project.name.label}'>Inventory</a>
-                </div>
-                <nav class="collapse navbar-collapse" role="navigation">
-                    <ul class="nav navbar-nav">
-                        <li th:class="${activeMenu} == 'home' ? 'active'"><a href="#" th:href="@{/}" th:text="#{home.label}">Home</a></li>
-                        <li th:class="${activeMenu} == 'admin/user' ? 'active'"><a href="#" th:href="@{/admin/user}" th:text="#{list.adduser}">View Users</a></li>
-                        <li th:class="${activeMenu} == 'products' ? 'active'"><a href="#" th:href="@{/products}" th:text="#{list.products}">Products</a></li>
-                        <li th:class="${activeMenu} == 'client' ? 'active'"><a href="#" th:href="@{/client}" th:text="#{list.client}">Clients</a></li>
-                        <li><a href="#" th:href="@{/logout}" th:text="#{home.logout.label}">Logout</a></li>
-                    </ul>
-                </nav>
-            </div>
+        <header class="navbar navbar-inverse navbar-fixed-top" role="banner" th:substituteby="/main :: navigation('client')">
         </header>
 
         <div class="container">
             <div class="row">
                 <div class="col-sm-12">
-                    <h1 th:text="#{welcome.label}">Welcome</h1>
+                    <h1 th:text="#{client.list.label}">Client List</h1>
+                    <div class="well">
+                        <a href="#" th:href="@{/client/newClient/}" class="btn btn-primary"><i class="icon-plus"></i><span th:text="' '+#{new.client}">Add Client</span></a>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-striped table-hover">
+                            <thead>
+                                <tr>
+                                    <th th:text="#{client.list.delete}">Delete</th>
+                                    <th th:text="#{client.list.company}">Company</th>
+                                    <th th:text="#{client.list.firstName}">First Name</th>
+                                    <th th:text="#{client.list.lastName}">Last Name</th>
+                                    <th th:text="#{client.list.phoneNumber}">Phone Number</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="client : ${list}">
+                                    <td><a href="#" th:href="@{'/client/delete/'+${client.id}+'/'}" class="btn btn-danger"><i class="icon-minus"></i></a></td>
+                                    <td th:text="${client.company}">Company</td>
+                                    <td th:text="${client.firstName}">FirstName</td>
+                                    <td th:text="${client.lastName}">LastName</td>
+                                    <td th:text="${client.phoneNumber}">Phone Number</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
                 </div>
             </div>
         </div>
-<!--
-        <footer class="footer" role="contentinfo" th:fragment="footer" >
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-12">
-                        <p><a href="#" th:href="@{/}"><img src="../../resources/img/logo.png" th:src="@{/resources/img/logo.png}" alt="Southwestern Adventist University" /></a></p>
-                    </div>
-                </div>
-            </div>
-        </footer>-->
 
-        <div th:fragment="scripts" th:remove="tag">
-            <script src="../../resources/js/jquery-1.10.1.min.js" th:src="@{//code.jquery.com/jquery-1.10.1.min.js}"></script>
-            <script src="../../resources/js/jquery-migrate-1.2.1.min.js" th:src="@{//code.jquery.com/jquery-migrate-1.2.1.min.js}"></script>
-            <script src="../../resources/js/bootstrap.min.js" th:src="@{//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js}"></script>
+
+
+        <div th:include="main :: scripts">
+            <script src="../../resources/js/jquery-1.10.1.min.js" th:src="@{http://code.jquery.com/jquery-1.10.1.min.js}"></script>
+            <script src="../../resources/js/jquery-migrate-1.2.1.min.js" th:src="@{http://code.jquery.com/jquery-migrate-1.2.1.min.js}"></script>
+            <script src="../../resources/js/bootstrap.min.js" th:src="@{http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js}"></script>
             <script src="../../resources/js/main.js" th:src="@{/resources/js/main.js}"></script>
         </div>
     </body>

@@ -31,10 +31,12 @@ import java.util.List;
  * @author martinezl
  */
 public interface ClientDao {
-    
+
     public Client createClient(Client client);
-    public Client getClient(Integer id);
+
     public void deleteClient(Client client);
+
     public List<Client> list();
-    
+
+    public Client getClient(Long id);
 }

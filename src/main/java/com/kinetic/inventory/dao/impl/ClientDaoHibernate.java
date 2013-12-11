@@ -47,13 +47,6 @@ public class ClientDaoHibernate extends BaseDao implements ClientDao {
     }
 
     @Override
-    @Transactional(readOnly = true)
-    public Client getClient(Integer id) {
-        Client client = (Client) currentSession().get(Client.class, id);
-        return client;
-    }
-
-    @Override
     public void deleteClient(Client client) {
         currentSession().delete(client);
     }
@@ -62,5 +55,11 @@ public class ClientDaoHibernate extends BaseDao implements ClientDao {
     public List<Client> list() {
         Query query = currentSession().createQuery("select c from Client as c ");
         return query.list();
+    }
+
+    @Override
+    public Client getClient(Long id) {
+        Client client = (Client) currentSession().get(Client.class, id);
+        return client;
     }
 }

@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2013 martinezl.
+ * Copyright 2014 martinezl.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,17 +23,18 @@
  */
 package com.kinetic.inventory.dao;
 
-import com.kinetic.inventory.model.Invoice;
+import com.kinetic.inventory.model.Item;
 import java.util.List;
 
 /**
  *
  * @author martinezl
  */
-public interface InvoiceDao {
+public interface ItemDao {
     
-    public Invoice createInvoice(Invoice invoice);
-    public Invoice getInvoice(Long id);
-    public void deleteInvoice(Invoice invoice);
-    public List<Invoice> list();      
+    public Item createItem(Item item);
+    public Item getItem(Long id);
+    public void deleteItem(Item item);
+    public List<Item> list();
+       
 }

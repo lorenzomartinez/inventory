@@ -58,7 +58,7 @@ public class Invoice implements Serializable {
     private Date dateCreated;
     @NotNull   
     @Column(nullable = false, length = 20, scale = 2, precision = 8)
-    private BigDecimal total;
+    private BigDecimal total= BigDecimal.ZERO;
     @NotNull
     @ManyToOne
     private Client client;
@@ -141,6 +141,20 @@ public class Invoice implements Serializable {
      */
     public void setItems(List<Item> items) {
         this.items = items;
+    }
+
+    /**
+     * @return the client
+     */
+    public Client getClient() {
+        return client;
+    }
+
+    /**
+     * @param client the client to set
+     */
+    public void setClient(Client client) {
+        this.client = client;
     }
     
 }

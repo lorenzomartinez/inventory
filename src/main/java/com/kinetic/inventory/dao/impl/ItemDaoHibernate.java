@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2013 martinezl.
+ * Copyright 2014 martinezl.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -24,10 +24,8 @@
 package com.kinetic.inventory.dao.impl;
 
 import com.kinetic.inventory.dao.BaseDao;
-import com.kinetic.inventory.dao.InvoiceDao;
-import com.kinetic.inventory.model.Client;
-import com.kinetic.inventory.model.Invoice;
-import java.util.Date;
+import com.kinetic.inventory.dao.ItemDao;
+import com.kinetic.inventory.model.Item;
 import java.util.List;
 import org.hibernate.Query;
 import org.springframework.stereotype.Repository;
@@ -39,32 +37,33 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Repository
 @Transactional
-public class InvoiceDaoHibernate extends BaseDao implements InvoiceDao {
-
+public class ItemDaoHibernate extends BaseDao implements ItemDao {
 
     @Override
-    public Invoice createInvoice(Invoice invoice) {
-        invoice.setDateCreated(new Date());
-        Client client = invoice.getClient();
-        currentSession().refresh(client);
-        invoice.setClient(client);
-        currentSession().save(invoice);
-        return invoice;
+    public Item createItem(Item item) {
+//        item.setInvoice(currentSession().get(Invoice.class, item.getInvoice().getId()));
+        currentSession().refresh(item.getInvoice());
+        currentSession().refresh(item.getProduct());
+        currentSession().save(item);
+        return item;
     }
+
     @Override
     @Transactional(readOnly = true)
-    public Invoice getInvoice(Long id) {
-        Invoice invoice = (Invoice) currentSession().get(Invoice.class, id);
-        return invoice;
-    }
-   @Override
-    public void deleteInvoice(Invoice invoice) {
-        currentSession().delete(invoice);
+    public Item getItem(Long id) {
+        Item item = (Item) currentSession().get(Item.class, id);
+        return item;
     }
 
     @Override
-    public List<Invoice> list() {
-        Query query = currentSession().createQuery("select i from Invoice as i ");
+    public void deleteItem(Item item) {
+        currentSession().delete(item);
+    }
+
+    @Override
+    public List<Item> list() {
+        Query query = currentSession().createQuery("select i from Item as i ");
         return query.list();
     }
+    
 }

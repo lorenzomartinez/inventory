@@ -49,7 +49,7 @@ public class Item implements Serializable {
     
     private Integer quantity;
     @Column(nullable = false, length = 12, scale = 2, precision = 8)
-    private BigDecimal price;
+    private BigDecimal price = BigDecimal.ZERO;
     @ManyToOne
     private Invoice invoice;
     @ManyToOne

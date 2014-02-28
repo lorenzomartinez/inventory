@@ -24,7 +24,7 @@ THE SOFTWARE.
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
-    <head th:include='/main :: head(#{user.label})'>
+    <head th:include='/main :: head(#{products.label})'>
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
         <title th:text="|${title} - #{project.name.label}|">Main</title>
@@ -68,8 +68,8 @@ THE SOFTWARE.
 <!--                                    <td th:text="${product.itemID}">Item ID</td>-->
                                     <td th:text="${product.manufacturer}">Manufacturer</td>
                                     <td th:text="${product.model}">Model</td>
-                                    <td th:text="${product.cost}">Cost</td>
-                                    <td th:text="${product.listPrice}">List Price</td>
+                                    <td th:text="${'$'+product.cost}">Cost</td>
+                                    <td th:text="${'$'+product.listPrice}">List Price</td>
                                 </tr>
                             </tbody>
                         </table>

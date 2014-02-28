@@ -47,7 +47,7 @@ public class Item implements Serializable {
     @Version
     private Integer version;
     
-    private Integer quantity;
+    private Integer quantity = 1;
     @Column(nullable = false, length = 12, scale = 2, precision = 8)
     private BigDecimal price = BigDecimal.ZERO;
     @ManyToOne

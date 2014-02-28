@@ -27,6 +27,7 @@ import com.kinetic.inventory.dao.BaseDao;
 import com.kinetic.inventory.dao.InvoiceDao;
 import com.kinetic.inventory.model.Client;
 import com.kinetic.inventory.model.Invoice;
+import com.kinetic.inventory.model.Item;
 import java.util.Date;
 import java.util.List;
 import org.hibernate.Query;
@@ -59,6 +60,10 @@ public class InvoiceDaoHibernate extends BaseDao implements InvoiceDao {
     }
    @Override
     public void deleteInvoice(Invoice invoice) {
+       for(Item item:invoice.getItems()){
+           currentSession().delete(item);
+       }
+       
         currentSession().delete(invoice);
     }
 

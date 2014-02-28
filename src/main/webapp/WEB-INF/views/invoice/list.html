@@ -57,8 +57,8 @@ THE SOFTWARE.
                                     <th th:text="#{invoice.list.delete}">Delete</th>
                                     <th th:text="#{invoice.list.edit}">Edit</th>
                                     <th th:text="#{invoice.list.date}">Date</th>
-                                    <th th:text="#{invoice.list.client}">Client</th> <!--
-                                    <th th:text="#{products.list.model}">Model</th>
+                                    <th th:text="#{invoice.list.client}">Client</th>
+                                    <th th:text="#{invoice.list.total}">Total</th><!--
                                     <th th:text="#{products.list.cost}">Cost</th>
                                     <th th:text="#{products.list.listPrice}">List Price</th>-->
                                 </tr>
@@ -69,6 +69,7 @@ THE SOFTWARE.
                                     <td><a href="#" th:href="@{'/invoice/see/'+${invoice.id}+'/'}" class="btn btn-warning"><i class="icon-edit"></i></a></td>
                                     <td th:text="${invoice.dateCreated}">Date</td>
                                     <td th:text="${invoice.client.company}">Client</td>
+                                    <td th:text="${'$'+invoice.total}">Total</td>
 <!--                                   <td th:text="${product.model}">Model</td>
                                     <td th:text="${product.cost}">Cost</td>
                                     <td th:text="${product.listPrice}">List Price</td>-->

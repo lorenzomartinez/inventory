@@ -55,12 +55,12 @@ THE SOFTWARE.
                                     <option th:each="client : ${clients}" th:value="${client.id}" th:text="${client.company}">Client</option>                             
                                 </select>
                                 <br />
-<!--                                <label for="item"><span style="font-size:20px;">Item</span></label>
-                                <br />
-                                <input type="text" id="items" name="items" />-->
+                                <!--                                <label for="item"><span style="font-size:20px;">Item</span></label>
+                                         <br />
+                                                                <input type="text" id="items" name="items" />-->
                             </div>
                             <p class="well" style="margin-top: 10px;">
-                                <button type="submit" name="createBtn" class="btn btn-primary" id="create" th:attr="value=#{invoice.list.addItem}" ><i class="icon-ok icon-white"></i>&nbsp;Add Item</button>
+                                <button type="submit" name="createBtn" class="btn btn-primary" id="create" th:attr="value=#{invoice.list.update}" ><i class="icon-ok icon-white"></i>&nbsp;Update</button>
                                 <a class="btn" href="#" th:href="@{'/invoice/see/'+${invoice.id}+'/'}"><i class="icon-remove"></i> Cancel</a>
                             </p>
                         </fieldset>

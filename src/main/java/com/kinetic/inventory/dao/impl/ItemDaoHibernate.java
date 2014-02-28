@@ -25,7 +25,9 @@ package com.kinetic.inventory.dao.impl;
 
 import com.kinetic.inventory.dao.BaseDao;
 import com.kinetic.inventory.dao.ItemDao;
+import com.kinetic.inventory.model.Invoice;
 import com.kinetic.inventory.model.Item;
+import java.math.BigDecimal;
 import java.util.List;
 import org.hibernate.Query;
 import org.springframework.stereotype.Repository;
@@ -44,7 +46,10 @@ public class ItemDaoHibernate extends BaseDao implements ItemDao {
 //        item.setInvoice(currentSession().get(Invoice.class, item.getInvoice().getId()));
         currentSession().refresh(item.getInvoice());
         currentSession().refresh(item.getProduct());
+        item.setPrice(item.getProduct().getListPrice().multiply(new BigDecimal (item.getQuantity())));
         currentSession().save(item);
+        Invoice invoice = item.getInvoice();
+        invoice.setTotal(invoice.getTotal().add(item.getProduct().getListPrice().multiply(new BigDecimal (item.getQuantity()))));
         return item;
     }
 
@@ -57,10 +62,13 @@ public class ItemDaoHibernate extends BaseDao implements ItemDao {
 
     @Override
     public void deleteItem(Item item) {
+        Invoice invoice = item.getInvoice();
+        invoice.setTotal(invoice.getTotal().subtract(item.getProduct().getListPrice().multiply(new BigDecimal (item.getQuantity()))));
         currentSession().delete(item);
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<Item> list() {
         Query query = currentSession().createQuery("select i from Item as i ");
         return query.list();

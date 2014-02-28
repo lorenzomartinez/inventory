@@ -44,26 +44,33 @@ THE SOFTWARE.
         <div class="container">
             <div class="row">
                 <div class="col-sm-12">
-                    <h1 style='padding-left:20pt;'>Add Item</h1>                                
+                    <h1>Add Item</h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4">            
                     <form action="#" th:action="@{/invoice/addItem}" th:object='${item}' method="post">
                         <input type="hidden" th:field="*{invoice.id}"/>
                         <fieldset>
-                            <div style="padding-left: 20pt;">
-                                <label for="products"><span style="font-size:20px;">Product</span></label>
-                                <br/>
-                                <select th:field="*{product.id}" id="product">
+                            <div class="form-group">
+                                <label for="products"><span style="font-size:20px;">Product</span></label>                                
+                                <select class="form-control" th:field="*{product.id}" id="product">
                                     <option th:each="product : ${products}" th:value="${product.id}" th:text="${product.description}">Product</option>                             
                                 </select>
-                                <br />
                             </div>
-                            <p class="well" style="margin-top: 10px;">
-                                <button type="submit" name="createBtn" class="btn btn-primary" id="create" th:attr="value=#{create.invoice}" ><i class="icon-ok icon-white"></i>&nbsp;Add Item</button>
-                                <a class="btn" href="/inventory/invoice"><i class="icon-remove"></i> Cancel</a>
-                            </p>
+                            <div class="form-group">
+                                <label for="quantity"><span style="font-size:20px;">Quantity</span></label>
+                                <input type="number" class="form-control" id="quantity" name="quantity" th:field="*{quantity}" min='1' max='250'/>
+                            </div>                                              
+                                <p class="well" style="margin-top: 10px;">
+                                    <button type="submit" name="createBtn" class="btn btn-primary" id="create" th:attr="value=#{create.invoice}" ><i class="icon-ok icon-white"></i>&nbsp;Add Item</button>
+                                    <a class="btn" href="/inventory/invoice"><i class="icon-remove"></i> Cancel</a>
+                                </p>
                         </fieldset>
                     </form>   
                 </div>
-            </div></div>
+            </div>
+            </div>
 
 
 

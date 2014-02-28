@@ -79,7 +79,7 @@ THE SOFTWARE.
                                 <br/>
                                 <label for="phoneNumber"><span style="font-size:20px;">Phone Number</span><span class="required-indicator">*</span></label>
                                 <br/>
-                                <input type="text" id="phoneNumber" name="phoneNumber" th:field="*{phoneNumber}" />
+                                <input type="text" class="bfh-phone" data-format="(ddd) ddd-dddd" id="phoneNumber" name="phoneNumber" th:field="*{phoneNumber}" />
                             </div>
                             <p class="well" style="margin-top: 10px;">
                                 <button type="submit" name="createBtn" class="btn btn-primary" id="create" th:attr="value=#{create.client}" ><i class="icon-ok icon-white"></i>&nbsp;Create Client</button>
@@ -99,5 +99,6 @@ THE SOFTWARE.
             <script src="../../resources/js/bootstrap.min.js" th:src="@{http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js}"></script>
             <script src="../../resources/js/main.js" th:src="@{/resources/js/main.js}"></script>
         </div>
+        <script src="../../resources/js/bootstrap-formhelpers.js" th:src="@{/resources/js/bootstrap-formhelpers.js}"></script>
     </body>
 </html>

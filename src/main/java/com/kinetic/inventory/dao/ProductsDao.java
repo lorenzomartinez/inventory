@@ -26,10 +26,7 @@ package com.kinetic.inventory.dao;
 import com.kinetic.inventory.model.Products;
 import java.util.List;
 
-/**
- *
- * @author martinezl
- */
+
 public interface ProductsDao {
     
     public Products getProduct(Long id);

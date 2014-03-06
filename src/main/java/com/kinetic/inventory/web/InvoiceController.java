@@ -40,10 +40,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-/**
- *
- * @author martinezl
- */
+
 @Controller
 @RequestMapping("/invoice")
 public class InvoiceController {
@@ -96,14 +93,6 @@ public class InvoiceController {
         model.addAttribute("invoice", invoice);
         return "invoice/edit";
     }
-//        add this one to add new items
-//        @RequestMapping("/edit/{id}/addItem/{id}")
-//        public String addItem(@PathVariable Long id, Model model){
-//            Item item = new Item();
-//            
-//            
-//            return null;
-//        }
 
     @RequestMapping("/delete/{id}/")
     public String delete(@PathVariable Long id, Model model, RedirectAttributes redirectAttributes) {

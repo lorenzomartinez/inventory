@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2013 J. David Mendoza <jdmendoza@swau.edu>.
+ * Copyright 2013 martinezl.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -41,10 +41,7 @@ import org.hibernate.validator.constraints.Email;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-/**
- *
- * @author J. David Mendoza <jdmendoza@swau.edu>
- */
+
 @Entity
 @Table(name = "users")
 public class User implements Serializable, UserDetails {

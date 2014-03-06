@@ -40,10 +40,7 @@ import javax.persistence.TemporalType;
 import javax.persistence.Version;
 import javax.validation.constraints.NotNull;
 
-/**
- *
- * @author martinezl
- */
+
 @Entity
 @Table(name = "invoice")
 public class Invoice implements Serializable {

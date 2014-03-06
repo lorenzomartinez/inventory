@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2013 J. David Mendoza <jdmendoza@swau.edu>.
+ * Copyright 2013 martinezl.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -35,10 +35,7 @@ import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
-/**
- *
- * @author J. David Mendoza <jdmendoza@swau.edu>
- */
+
 @Component
 public class Bootstrap implements ApplicationListener<ContextRefreshedEvent> {
     

@@ -35,10 +35,7 @@ import javax.persistence.Version;
 import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.NotBlank;
 
-/**
- *
- * @author martinezl
- */
+
 @Entity
 @Table(name = "products")
 public class Products implements Serializable {

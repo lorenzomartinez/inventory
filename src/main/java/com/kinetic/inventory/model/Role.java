@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2013 Southwestern Adventist University.
+ * Copyright 2013 martinezl.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -31,10 +31,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import org.springframework.security.core.GrantedAuthority;
 
-/**
- *
- * @author J. David Mendoza <jdmendoza@swau.edu>
- */
+
 @Entity
 @Cacheable
 @Table(name = "roles")

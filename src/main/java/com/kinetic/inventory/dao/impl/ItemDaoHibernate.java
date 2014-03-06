@@ -33,17 +33,13 @@ import org.hibernate.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-/**
- *
- * @author martinezl
- */
+
 @Repository
 @Transactional
 public class ItemDaoHibernate extends BaseDao implements ItemDao {
 
     @Override
     public Item createItem(Item item) {
-//        item.setInvoice(currentSession().get(Invoice.class, item.getInvoice().getId()));
         currentSession().refresh(item.getInvoice());
         currentSession().refresh(item.getProduct());
         item.setPrice(item.getProduct().getListPrice().multiply(new BigDecimal (item.getQuantity())));

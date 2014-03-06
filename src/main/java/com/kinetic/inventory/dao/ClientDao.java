@@ -26,10 +26,6 @@ package com.kinetic.inventory.dao;
 import com.kinetic.inventory.model.Client;
 import java.util.List;
 
-/**
- *
- * @author martinezl
- */
 public interface ClientDao {
 
     public Client createClient(Client client);

@@ -36,10 +36,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-/**
- *
- * @author martinezl
- */
 @Controller
 @RequestMapping("/products")
 public class ProductsController {
@@ -47,45 +43,41 @@ public class ProductsController {
     private static final Logger log = LoggerFactory.getLogger(ProductsController.class);
     @Autowired
     private ProductsDao productsDao;
-    
+
     @RequestMapping(value = {"", "/list"})
-    public String list(Model model){
+    public String list(Model model) {
         model.addAttribute("list", productsDao.list());
         return "/products/list";
     }
-    //new
+
     @RequestMapping("/newProduct")
     public String newProduct(Model model) {
         model.addAttribute("product", new Products());
         return "/products/newProduct";
     }
-    //create
+
     @RequestMapping("/create")
-    public String createProduct(@Valid Products products, BindingResult bindingResult, RedirectAttributes redirectAttributes){
-        if(bindingResult.hasErrors()){
+    public String createProduct(@Valid Products products, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+        if (bindingResult.hasErrors()) {
             return "/products/newProduct";
         }
         products = productsDao.createProduct(products);
         redirectAttributes.addFlashAttribute("message", "The Product " + products.getModel() + " has been created");
-        return "redirect:/products/see/" + products.getId()+"/";
+        return "redirect:/products/see/" + products.getId() + "/";
     }
-    //see
+
     @RequestMapping("/see/{id}")
     public String see(@PathVariable Long id, Model model) {
         Products product = productsDao.getProduct(id);
         model.addAttribute("product", product);
         return "/products/see";
     }
-    //delete
+
     @RequestMapping("/delete/{id}/")
     public String delete(@PathVariable Long id, Model model, RedirectAttributes redirectAttributes) {
         Products product = productsDao.getProduct(id);
         productsDao.deleteProduct(product);
-        redirectAttributes.addFlashAttribute("message", "The product "+ id + " has been deleted");
+        redirectAttributes.addFlashAttribute("message", "The product " + id + " has been deleted");
         return "redirect:/products/";
     }
-    //update
-    /*
-     
-     */
 }

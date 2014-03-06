@@ -1,7 +1,7 @@
 <!--
 The MIT License
 
-Copyright 2013 Southwestern Adventist University.
+Copyright 2013 martinezl.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -55,7 +55,6 @@ THE SOFTWARE.
                             <thead>
                                 <tr>
                                     <th th:text="#{products.list.delete}">Delete</th>
-<!--                                    <th th:text="#{products.list.itemID}">Item ID</th>-->
                                     <th th:text="#{products.list.manufacturer}">Manufacturer</th>
                                     <th th:text="#{products.list.model}">Model</th>
                                     <th th:text="#{products.list.cost}">Cost</th>
@@ -65,7 +64,6 @@ THE SOFTWARE.
                             <tbody>
                                 <tr th:each="product : ${list}">
                                     <td><a href="#" th:href="@{'/products/delete/'+${product.id}+'/'}" class="btn btn-danger"><i class="icon-minus"></i></a></td>
-<!--                                    <td th:text="${product.itemID}">Item ID</td>-->
                                     <td th:text="${product.manufacturer}">Manufacturer</td>
                                     <td th:text="${product.model}">Model</td>
                                     <td th:text="${'$'+product.cost}">Cost</td>
@@ -74,7 +72,7 @@ THE SOFTWARE.
                             </tbody>
                         </table>
                     </div>
-                    
+
                 </div>
             </div>
         </div>

@@ -1,7 +1,7 @@
 <!--
 The MIT License
 
-Copyright 2013 Southwestern Adventist University.
+Copyright 2013 martinezl.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -37,7 +37,7 @@ THE SOFTWARE.
         <link rel="stylesheet" href="../../resources/css/bootstrap.no-icons.min.css" th:href="@{//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.no-icons.min.css}" />
         <link rel="stylesheet" href="../../resources/css/font-awesome.min.css" th:href="@{//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css}" />
         <link rel="stylesheet" href="../../resources/css/main.css" th:href="@{/resources/css/main.css}" />
-        
+
     </head>
     <body>
         <header class="navbar navbar-inverse navbar-fixed-top" role="banner" th:substituteby="/main :: navigation('products')">
@@ -62,7 +62,7 @@ THE SOFTWARE.
                 <div>
                     <h4>List Price</h4>
                     <h4 th:text="${product.listPrice}">List Price</h4>
-                    
+
                     <div class="well">
                         <a href="#" th:href="@{/products/}" class="btn btn-primary"><i class="icon-list"></i><span th:text="' '+#{products.list.label}">View Lists</span></a>
                     </div>

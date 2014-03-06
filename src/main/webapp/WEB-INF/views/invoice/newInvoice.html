@@ -1,7 +1,7 @@
 <!--
 The MIT License
 
-Copyright 2013 Lorenzo Martinez
+Copyright 2013 martinezl.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -55,9 +55,6 @@ THE SOFTWARE.
                                     <option th:each="client : ${clients}" th:value="${client.id}" th:text="${client.company}">Client</option>                             
                                 </select>
                                 <br />
-<!--                                <label for="item"><span style="font-size:20px;">Item</span></label>
-                                <br />
-                                <input type="text" id="items" name="items" />-->
                             </div>
                             <p class="well" style="margin-top: 10px;">
                                 <button type="submit" name="createBtn" class="btn btn-primary" id="create" th:attr="value=#{create.invoice}" ><i class="icon-ok icon-white"></i>&nbsp;Create Invoice</button>

@@ -49,10 +49,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-/**
- *
- * @author martinezl
- */
+
 @Controller
 @RequestMapping("/report")
 public class ReportController {
@@ -90,7 +87,7 @@ public class ReportController {
                 PrintWriter out = response.getWriter();
                 out.println("<html>");
                 out.println("<head>");
-                out.println("<title>Inventarios</title>");
+                out.println("<title>Kinetic</title>");
                 out.println("</head>");
 
                 out.println("<body bgcolor=\"white\">");

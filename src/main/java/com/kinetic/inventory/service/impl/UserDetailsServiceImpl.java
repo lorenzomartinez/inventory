@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2013 J. David Mendoza <jdmendoza@swau.edu>.
+ * Copyright 2013 martinezl.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -32,10 +32,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-/**
- *
- * @author J. David Mendoza <jdmendoza@swau.edu>
- */
+
 @Service
 public class UserDetailsServiceImpl extends BaseService implements UserDetailsService {
 

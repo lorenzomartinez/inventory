@@ -1,7 +1,7 @@
 <!--
 The MIT License
 
-Copyright 2013 Southwestern Adventist University.
+Copyright 2013 martinezl.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -48,7 +48,7 @@ THE SOFTWARE.
                     <h1 th:text="'Invoice '+${invoice.id}">Invoice</h1>
                     <div class="well">
                         <a href="#" th:href="@{/invoice/}" class="btn btn-primary"><i class="icon-list"></i><span th:text="' '+#{invoice.list.label}">Invoice List</span></a>
-<!--                        <a href="#" th:href="@{'/invoice/edit/'+${invoice.id}+'/'}" class="btn btn-warning"><i class="icon-edit"></i><span th:text=" ' '+#{invoice.list.edit}">Edit</span></a>-->
+                        <!--                        <a href="#" th:href="@{'/invoice/edit/'+${invoice.id}+'/'}" class="btn btn-warning"><i class="icon-edit"></i><span th:text=" ' '+#{invoice.list.edit}">Edit</span></a>-->
                         <a href="#" th:href="@{'/invoice/addItem/'+${invoice.id}}" class="btn btn-info"><i class="icon-plus-sign"></i><span th:text=" ' '+#{invoice.list.addItem}">Add</span></a>
                         <a href="#" th:href="@{'/report/invoice/'+${invoice.id}}" class="btn btn-warning"><i class="icon-download-alt"></i><span th:text=" ' '+#{invoice.list.report}">Report</span></a>
                         <span class="pull-right" style="font-weight: bold; font-size: 1.5em; " th:text="${'Invoice Total: $'+invoice.total}">Test</span>
@@ -61,9 +61,7 @@ THE SOFTWARE.
                                     <th th:text="#{invoice.list.product.manufacturer}">Manufacturer</th>
                                     <th th:text="#{invoice.list.product.description}">Description</th>
                                     <th th:text="#{invoice.list.product.quantity}">Quantity</th>
-                                    <th th:text="#{invoice.list.product.listPrice}">Price</th>                                     
-                                    <!--<th th:text="#{products.list.cost}">Cost</th>
-                                    <th th:text="#{products.list.listPrice}">List Price</th>-->
+                                    <th th:text="#{invoice.list.product.listPrice}">Price</th>                                                                        
                                 </tr>
                             </thead>
                             <tbody>
@@ -72,10 +70,7 @@ THE SOFTWARE.
                                     <td th:text="${item.product.manufacturer}">Manufacturer</td>
                                     <td th:text="${item.product.description}">Description</td>
                                     <td th:text="${item.quantity}">Quantity</td>
-                                    <td th:text="${'$'+item.price}">Price</td>
-                                    <!-- <td><a href="#" th:href="@{'/invoice/see/'+${invoice.id}+'/'}" class="btn btn-warning"><i class="icon-edit"></i></a></td>
-                                    <td th:text="${invoice.dateCreated}">Date</td>
-                                    <td th:text="${invoice.client.company}">Client</td>          -->                                                       
+                                    <td th:text="${'$'+item.price}">Price</td>                                                     
                                 </tr>
                             </tbody>
                         </table>

@@ -34,10 +34,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Version;
 
-/**
- *
- * @author martinezl
- */
+
 @Entity
 @Table
 public class Item implements Serializable {

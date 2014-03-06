@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2013 Southwestern Adventist University.
+ * Copyright 2013 martinezl.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -56,10 +56,6 @@ import org.thymeleaf.spring3.SpringTemplateEngine;
 import org.thymeleaf.spring3.view.ThymeleafViewResolver;
 import org.thymeleaf.templateresolver.ServletContextTemplateResolver;
 
-/**
- *
- * @author J. David Mendoza <jdmendoza@swau.edu>
- */
 @Configuration
 @EnableWebMvc
 @ComponentScan(basePackages = {"com.kinetic.inventory.web"})

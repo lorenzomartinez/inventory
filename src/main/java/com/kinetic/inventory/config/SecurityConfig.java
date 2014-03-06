@@ -39,10 +39,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-/**
- *
- * @author J. David Mendoza <jdmendoza@swau.edu>
- */
 @EnableWebSecurity
 @Configuration
 @Import(PropertyPlaceholderConfig.class)
@@ -91,10 +87,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void registerAuthentication(AuthenticationManagerBuilder auth) throws Exception {
-//        auth.inMemoryAuthentication()
-//                .withUser("admin").password("admin").roles("ADMIN", "USER")
-//                .and()
-//                .withUser("test").password("test").roles("USER");
         DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
         authenticationProvider.setUserDetailsService(userDetailsService);
         authenticationProvider.setPasswordEncoder(passwordEncoder());

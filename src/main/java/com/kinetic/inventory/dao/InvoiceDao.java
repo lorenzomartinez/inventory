@@ -26,10 +26,7 @@ package com.kinetic.inventory.dao;
 import com.kinetic.inventory.model.Invoice;
 import java.util.List;
 
-/**
- *
- * @author martinezl
- */
+
 public interface InvoiceDao {
     
     public Invoice createInvoice(Invoice invoice);

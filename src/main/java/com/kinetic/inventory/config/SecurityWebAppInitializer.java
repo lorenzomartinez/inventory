@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2013 Southwestern Adventist University.
+ * Copyright 2013 martinezl.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -26,10 +26,6 @@ package com.kinetic.inventory.config;
 import org.springframework.core.annotation.Order;
 import org.springframework.security.web.context.AbstractSecurityWebApplicationInitializer;
 
-/**
- *
- * @author J. David Mendoza <jdmendoza@swau.edu>
- */
 @Order(1)
 public class SecurityWebAppInitializer extends AbstractSecurityWebApplicationInitializer {
     

@@ -36,10 +36,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-/**
- *
- * @author martinezl
- */
+
 @Controller
 @RequestMapping("/admin/user")
 public class UserController {
@@ -50,7 +47,6 @@ public class UserController {
 
     @RequestMapping(value = {"", "/list"})
     private String list(Model model) {
-//        List articles = articleDao.list();
         model.addAttribute("list", userDao.list());
         return "admin/user/list";
     }
@@ -67,8 +63,6 @@ public class UserController {
             return "admin/user/newUser";
         }
         log.debug("{}", user);
-//                @Autowired
-//                String password = passwordEncoder.encode();
         user = userDao.createUser(user);
 
         redirectAttributes.addFlashAttribute("message", "The User " + user.getFullName() + " has been created");

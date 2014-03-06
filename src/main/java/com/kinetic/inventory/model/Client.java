@@ -31,10 +31,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Version;
 
-/**
- *
- * @author martinezl
- */
+
 @Entity
 @Table
 public class Client implements Serializable{

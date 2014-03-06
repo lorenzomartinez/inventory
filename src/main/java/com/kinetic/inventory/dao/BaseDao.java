@@ -1,7 +1,7 @@
 /*
- * The MIT License (MIT)
+ * The MIT License
  *
- * Copyright (c) 2013 Southwestern Adventist University
+ * Copyright 2013 martinezl.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -31,9 +31,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
 
-/**
- * @author J. David Mendoza <jdmendoza@swau.edu>
- */
 public abstract class BaseDao {
 
     protected final transient Logger log = LoggerFactory.getLogger(getClass());

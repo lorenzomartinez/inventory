@@ -34,10 +34,7 @@ import org.hibernate.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-/**
- *
- * @author martinezl
- */
+
 @Repository
 @Transactional
 public class InvoiceDaoHibernate extends BaseDao implements InvoiceDao {

@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2013 Southwestern Adventist University.
+ * Copyright 2013 martinezl.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -27,10 +27,6 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 
-/**
- *
- * @author J. David Mendoza <jdmendoza@swau.edu>
- */
 @Configuration
 @ComponentScan(basePackages = {"com.kinetic.inventory.model","com.kinetic.inventory.dao","com.kinetic.inventory.utils","com.kinetic.inventory.service"})
 @PropertySource("file:${user.home}/kinetic/inventory.properties")

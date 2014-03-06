@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2013 Southwestern Adventist University.
+ * Copyright 2013 martinezl.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -30,10 +30,6 @@ import org.springframework.context.annotation.Import;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 
-/**
- *
- * @author J. David Mendoza <jdmendoza@swau.edu>
- */
 @Configuration
 @Import(PropertyPlaceholderConfig.class)
 public class MailConfig {

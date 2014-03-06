@@ -26,10 +26,7 @@ package com.kinetic.inventory.dao;
 import com.kinetic.inventory.model.Item;
 import java.util.List;
 
-/**
- *
- * @author martinezl
- */
+
 public interface ItemDao {
     
     public Item createItem(Item item);

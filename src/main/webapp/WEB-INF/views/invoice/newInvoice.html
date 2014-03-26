@@ -43,23 +43,25 @@ THE SOFTWARE.
         </header>   
         <div class="container">
             <div class="row">
-                <div class="col-sm-12">
-                    <h1 style='padding-left:20pt;'>New Invoice</h1>                                
-                    <form action="#" th:action="@{/invoice/create}" th:object='${invoice}' method="post">
+                <div class="col-md-12">
+                    <h1>New Invoice</h1>                                
+                    <form class="form-horizontal well" action="#" th:action="@{/invoice/create}" th:object='${invoice}' method="post">
                         <input type="hidden" th:field="*{total}"/>
                         <fieldset>
-                            <div style="padding-left: 20pt;">
-                                <label for="client"><span style="font-size:20px;">Client</span></label>
-                                <br/>
-                                <select th:field="*{client.id}" id="client">
-                                    <option th:each="client : ${clients}" th:value="${client.id}" th:text="${client.company}">Client</option>                             
-                                </select>
-                                <br />
+                            <div class="form-group">
+                                <label for="client" class="col-md-2 control-label"><span style="font-size:20px;">Client</span></label>
+                                <div class="col-md-10">
+                                    <select class="form-control" th:field="*{client.id}" id="client">
+                                        <option th:each="client : ${clients}" th:value="${client.id}" th:text="${client.company}">Client</option>                             
+                                    </select>
+                                </div>
                             </div>
-                            <p class="well" style="margin-top: 10px;">
-                                <button type="submit" name="createBtn" class="btn btn-primary" id="create" th:attr="value=#{create.invoice}" ><i class="icon-ok icon-white"></i>&nbsp;Create Invoice</button>
-                                <a class="btn" href="/inventory/invoice"><i class="icon-remove"></i> Cancel</a>
-                            </p>
+                            <div class="col-md-offset-2 col-md-10">
+                                <p style="margin-top: 10px;">
+                                    <button type="submit" name="createBtn" class="btn btn-primary" id="create" th:attr="value=#{create.invoice}" ><i class="icon-ok icon-white"></i>&nbsp;Create Invoice</button>
+                                    <a class="btn" href="/inventory/invoice"><i class="icon-remove"></i> Cancel</a>
+                                </p>
+                            </div>
                         </fieldset>
                     </form>   
                 </div>
@@ -74,5 +76,10 @@ THE SOFTWARE.
             <script src="../../resources/js/bootstrap.min.js" th:src="@{http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js}"></script>
             <script src="../../resources/js/main.js" th:src="@{/resources/js/main.js}"></script>
         </div>
+                <script>
+            $(function() {
+                $('#client').focus();
+            });
+        </script>
     </body>
 </html>

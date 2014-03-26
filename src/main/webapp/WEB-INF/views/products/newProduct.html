@@ -44,34 +44,45 @@ THE SOFTWARE.
         <div class="container">
             <div class="row">
                 <div class="col-sm-12">
-                    <h1 style='padding-left:20pt;'>Add new product</h1>                                
-                    <form action="#" th:action="@{/products/create}" th:object='${product}' method="post">
+                    <h1>Add new product</h1>                                
+                    <form action="#" class="form-horizontal well well-lg" th:action="@{/products/create}" th:object='${product}' method="post">
                         <fieldset>
-                            <div style="padding-left: 20pt;">
-                                <label for="manufacturer"><span style="font-size:20px;">Manufacturer</span><span class="required-indicator">*</span></label>
-                                <br/>
-                                <input type="text" id="manufacturer" name="manufacturer" th:field="*{manufacturer}"/>
-                                <br/>                
-                                <label for="model"><span style="font-size:20px;">Model</span><span class="required-indicator">*</span></label>
-                                <br/>                
-                                <input type="text" id="model" name="model" th:field="*{model}"/>
-                                <br/>                
-                                <label for="description"><span style="font-size: 20px;">Description</span><span class="required-indicator">*</span></label>
-                                <br/>            
-                                <textarea id="description" name="description" th:field="*{description}"/>
-                                <br/>
-                                <label for="cost"><span style="font-size: 20px;">Cost</span><span class="required-indicator">*</span></label>
-                                <br/>
-                                <input type="text" id="cost" name="cost" th:field="*{cost}"/>
-                                <br/>
-                                <label for="listPrice"><span style="font-size:20px;">List Price</span><span class="required-indicator">*</span></label>
-                                <br/>
-                                <input type="text" id="listPrice" name="listPrice" th:field="*{listPrice}" />                                
+                            <div class="form-group">
+                                <label for="manufacturer" class="col-md-2 control-label"><span style="font-size:20px;">Manufacturer</span></label>
+                                <div class="col-md-10">
+                                    <input type="text" class="form-control" id="manufacturer" name="manufacturer" th:field="*{manufacturer}"/>
+                                </div>
                             </div>
-                            <p class="well" style="margin-top: 10px;">
-                                <button type="submit" name="createBtn" class="btn btn-primary" id="create" th:attr="value=#{create.product}" ><i class="icon-ok icon-white"></i>&nbsp;Create Product</button>
-                                <a class="btn" href="/inventory/products"><i class="icon-remove"></i> Cancel</a>
-                            </p>
+                            <div class="form-group">
+                                <label for="model" class="col-md-2 control-label"><span style="font-size:20px;">Model</span></label>
+                                <div class="col-md-10">               
+                                    <input type="text" class="form-control" id="model" name="model" th:field="*{model}"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="description" class="col-md-2 control-label"><span style="font-size: 20px;">Description</span></label>
+                                <div class="col-md-10">
+                                    <textarea id="description" class="form-control" name="description" th:field="*{description}"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="cost" class="col-md-2 control-label"><span style="font-size: 20px;">Cost</span></label>
+                                <div class="col-md-10">
+                                    <input type="text" class="form-control" id="cost" name="cost" th:field="*{cost}"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="listPrice" class="col-md-2 control-label"><span style="font-size:20px;">List Price</span></label>
+                                <div class="col-md-10">
+                                    <input type="text" class="form-control" id="listPrice" name="listPrice" th:field="*{listPrice}" />                                
+                                </div>
+                            </div>
+                            <div class="col-md-offset-2 col-md-10">
+                                <p style="margin-top: 10px;">
+                                    <button type="submit" name="createBtn" class="btn btn-primary" id="create" th:attr="value=#{create.product}" ><i class="icon-ok icon-white"></i>&nbsp;Create Product</button>
+                                    <a class="btn" href="/inventory/products"><i class="icon-remove"></i> Cancel</a>
+                                </p>
+                            </div>
                         </fieldset>
                     </form>   
                 </div>

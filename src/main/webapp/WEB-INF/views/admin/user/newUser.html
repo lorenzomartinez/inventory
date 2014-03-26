@@ -44,38 +44,59 @@ THE SOFTWARE.
         <div class="container">
             <div class="row">
                 <div class="col-sm-12">
-                    <h1 style='padding-left:20pt;'>Add new User</h1>                                
-        <form action="#" th:action="@{/admin/user/create}" th:object='${user}' method="post">
-            <fieldset>
-            <div style="padding-left: 20pt;">                
-                <label for="username"><span style="font-size:20px;">Enter Email</span><span class="required-indicator">*</span></label>                
-                <br/>
-                <input type="email" id="username" name="email" th:field="*{username}"/>
-                <br/>                
-                <label for="password"><span style="font-size:20px;">Password</span><span class="required-indicator">*</span></label>
-                <br/>
-                <input type="password" id="password" name="password" th:field="*{password}"/>
-                <br/>                
-                <label for="firstName"><span style="font-size:20px;">First Name</span><span class="required-indicator">*</span></label>
-                <br/>                
-                <input type="text" id="firstName" name="firstName" th:field="*{firstName}"/>
-                <br/>                
-                <label for="lastName"><span style="font-size: 20px;">Last Name</span><span class="required-indicator">*</span></label>
-                <br/>            
-                <input type="text" id="lastName" name="lastName" th:field="*{lastName}"/>
-                <br/>
-                <input type="checkbox" name="roles" th:field="*{roles}" value="ROLE_ADMIN"/>
-                <label for="ROLE_ADMIN"><span style="font-size: 20px;">ROLE_ADMIN</span></label>
-                <br/>
-                <input type="checkbox" name="roles" th:field="*{roles}" value="ROLE_USER"/>
-                <label for="ROLE_USER"><span style="font-size:20px;">ROLE_USER</span></label>
-            </div>
-            <p class="well" style="margin-top: 10px;">
-            <button type="submit" name="createBtn" class="btn btn-primary" id="create" th:attr="value=#{create.user}" ><i class="icon-ok icon-white"></i>&nbsp;Create User</button>
-            <a class="btn" href="/inventory/admin/user"><i class="icon-remove"></i> Cancel</a>
-            </p>
-            </fieldset>
-            </form>   
+                    <h1>Add new User</h1>
+                    <form class="form-horizontal well well-lg" role="form" action="#" th:action="@{/admin/user/create}" th:object='${user}' method="post">
+                        <fieldset>
+
+                            <div class="form-group">
+                                <label for="username" class="col-md-2 control-label"><span style="font-size:20px;">Enter Email</span></label>                
+                                <div class="col-md-10">
+                                    <input type="email" class="form-control" id="username" placeholder="Email" name="email" th:field="*{username}"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="password" class="col-md-2 control-label"><span style="font-size:20px;">Password</span></label>                            
+                                <div class="col-md-10">
+                                    <input type="password" class="form-control" id="password" placeholder="Password" name="password" th:field="*{password}"/>
+                                </div>
+                            </div>  
+                            <div class="form-group">
+                                <label for="firstName" class="col-md-2 control-label"><span style="font-size:20px;">First Name</span></label>
+                                <div class="col-md-10">        
+                                    <input type="text" class="form-control" id="firstName" placeholder="First Name" name="firstName" th:field="*{firstName}"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="lastName" class="col-md-2 control-label"><span style="font-size: 20px;">Last Name</span></label>
+                                <div class="col-md-10">           
+                                    <input type="text" class="form-control" placeholder="Last Name" id="lastName" name="lastName" th:field="*{lastName}"/>                            
+                                </div>
+                            </div>
+                            <div class="col-md-offset-2 col-md-10">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" id="ROLE_ADMIN" name="roles" onclick="document.getElementById('ROLE_USER').checked = this.checked;" th:field="*{roles}" value="ROLE_ADMIN"/>
+                                        <span style="font-size: 20px;">ROLE_ADMIN</span>
+                                        <br/>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-offset-2 col-md-10">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" id="ROLE_USER"  name="roles" th:field="*{roles}" value="ROLE_USER"/>
+                                        <span style="font-size:20px;">ROLE_USER</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-offset-2 col-md-10">
+                                <p style="margin-top: 10px;">
+                                    <button type="submit" name="createBtn" class="btn btn-primary" id="create" th:attr="value=#{create.user}" ><i class="icon-ok icon-white"></i>&nbsp;Create User</button>
+                                    <a class="btn" href="/inventory/admin/user"><i class="icon-remove"></i> Cancel</a>
+                                </p>
+                            </div>
+                        </fieldset>
+                    </form>  
                 </div>
             </div></div>
 

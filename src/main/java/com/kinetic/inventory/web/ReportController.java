@@ -74,7 +74,7 @@ public class ReportController {
         Connection conn = null;
         try {
             JasperReport jasperReport = (JasperReport) JRLoader
-                    .loadObject(reportFile.getPath());
+                    .loadObjectFromFile(reportFile.getPath());
 
             conn = dataSource.getConnection();
 

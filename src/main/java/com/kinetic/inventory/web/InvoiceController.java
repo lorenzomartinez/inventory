@@ -23,12 +23,15 @@
  */
 package com.kinetic.inventory.web;
 
+import com.github.dandelion.datatables.core.util.StringUtils;
 import com.kinetic.inventory.dao.ItemDao;
 import com.kinetic.inventory.dao.ProductsDao;
 import com.kinetic.inventory.dao.ClientDao;
 import com.kinetic.inventory.dao.InvoiceDao;
 import com.kinetic.inventory.model.Invoice;
 import com.kinetic.inventory.model.Item;
+import com.kinetic.inventory.model.Products;
+import java.util.List;
 import javax.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -38,6 +41,8 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
@@ -117,6 +122,14 @@ public class InvoiceController {
         model.addAttribute("products", productsDao.list());
         model.addAttribute("item", item);
         return "invoice/addItem";
+    }
+    @RequestMapping(value = "/products", params = {"term"}, produces = "application/json")
+    @ResponseBody
+    public List<Products> products(@RequestParam String term) {
+        log.debug("Looking for products with {}", term);
+        List<Products> products = productsDao.search(term);
+
+        return products;
     }
 
     @RequestMapping("/addItem")

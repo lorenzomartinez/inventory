@@ -23,6 +23,7 @@
  */
 package com.kinetic.inventory.config;
 
+import com.github.dandelion.datatables.thymeleaf.dialect.DataTablesDialect;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
@@ -97,6 +98,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         engine.setTemplateResolver(templateResolver());
         Set<IDialect> dialects = new HashSet<>();
         dialects.add(new SpringSecurityDialect());
+        dialects.add(new DataTablesDialect());
         engine.setAdditionalDialects(dialects);
         return engine;
     }

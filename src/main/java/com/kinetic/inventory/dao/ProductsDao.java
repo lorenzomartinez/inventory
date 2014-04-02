@@ -38,4 +38,6 @@ public interface ProductsDao {
     public Products editProduct(Products product);
     
     public List<Products> list();
+
+    public List<Products> search(String term);
 }

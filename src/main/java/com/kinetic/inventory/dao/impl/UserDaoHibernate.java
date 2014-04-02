@@ -34,10 +34,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-/**
- *
- * @author J. David Mendoza <jdmendoza@swau.edu>
- */
+
 @Repository
 @Transactional
 public class UserDaoHibernate extends BaseDao implements UserDao {

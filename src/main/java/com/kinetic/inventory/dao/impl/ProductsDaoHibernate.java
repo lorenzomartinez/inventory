@@ -27,15 +27,17 @@ import com.kinetic.inventory.dao.BaseDao;
 import com.kinetic.inventory.dao.ProductsDao;
 import com.kinetic.inventory.model.Products;
 import java.util.List;
+import org.hibernate.Criteria;
 import org.hibernate.Query;
+import org.hibernate.criterion.Disjunction;
+import org.hibernate.criterion.MatchMode;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-
 
 @Repository
 @Transactional
 public class ProductsDaoHibernate extends BaseDao implements ProductsDao {
-
 
     @Override
     @Transactional(readOnly = true)
@@ -66,5 +68,17 @@ public class ProductsDaoHibernate extends BaseDao implements ProductsDao {
     public List<Products> list() {
         Query query = currentSession().createQuery("select p from Products as p ");
         return query.list();
+    }
+
+    @Override
+    public List<Products> search(String term) {
+        Disjunction props = Restrictions.disjunction();
+        props.add(Restrictions.ilike("manufacturer", term, MatchMode.ANYWHERE));
+        props.add(Restrictions.ilike("model", term, MatchMode.ANYWHERE));
+        props.add(Restrictions.ilike("description", term, MatchMode.ANYWHERE));        
+        Criteria criteria = currentSession().createCriteria(Products.class);
+        criteria.add(props);
+        criteria.setMaxResults(10);
+        return criteria.list();
     }
 }

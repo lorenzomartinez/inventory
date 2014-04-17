@@ -28,24 +28,29 @@ import org.springframework.core.annotation.Order;
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
+// Second thing to be initialized
 @Order(2)
 public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 
+    // Defines root configuration files
     @Override
     protected Class<?>[] getRootConfigClasses() {
         return new Class<?>[]{SecurityConfig.class, DataConfig.class, MailConfig.class, ComponentConfig.class};
     }
 
+    // Defines servlet configuration settings and in the file they're found
     @Override
     protected Class<?>[] getServletConfigClasses() {
         return new Class<?>[]{WebConfig.class};
     }
 
+    // Servlet mapping
     @Override
     protected String[] getServletMappings() {
         return new String[]{"/"};
     }
 
+    // UTF-8 encoding default, allows all the funny characters to be displayed
     @Override
     protected Filter[] getServletFilters() {
 

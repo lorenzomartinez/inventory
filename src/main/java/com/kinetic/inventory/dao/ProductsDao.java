@@ -26,17 +26,18 @@ package com.kinetic.inventory.dao;
 import com.kinetic.inventory.model.Products;
 import java.util.List;
 
-
+// interface for the Products object
 public interface ProductsDao {
-    
+
+    // Declaration of methods to be used in the implementation
     public Products getProduct(Long id);
-    
+
     public Products createProduct(Products product);
-    
+
     public void deleteProduct(Products product);
-    
+
     public Products editProduct(Products product);
-    
+
     public List<Products> list();
 
     public List<Products> search(String term);

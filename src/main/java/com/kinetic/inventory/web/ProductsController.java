@@ -36,26 +36,36 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+// Defines class as a controller in the MVC architecture
 @Controller
+/* The directory used by the controller will be /products and any mapping values hereinafter
+ * will be assumed to be under the /products directory
+ */
 @RequestMapping("/products")
 public class ProductsController {
 
+    // declaration of 'log' for debugging purposes
     private static final Logger log = LoggerFactory.getLogger(ProductsController.class);
+    
+    // Declare and connect the ProductsDao class to use here
     @Autowired
     private ProductsDao productsDao;
 
+    // Method that takes us to the directory of the products list
     @RequestMapping(value = {"", "/list"})
     public String list(Model model) {
         model.addAttribute("list", productsDao.list());
         return "/products/list";
     }
 
+    // Method to the form of the new product
     @RequestMapping("/newProduct")
     public String newProduct(Model model) {
         model.addAttribute("product", new Products());
         return "/products/newProduct";
     }
 
+    // Creates new product, if any errors goes back to the form
     @RequestMapping("/create")
     public String createProduct(@Valid Products products, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
         if (bindingResult.hasErrors()) {
@@ -66,6 +76,7 @@ public class ProductsController {
         return "redirect:/products/see/" + products.getId() + "/";
     }
 
+    // Shows the values we input for the product attributes
     @RequestMapping("/see/{id}")
     public String see(@PathVariable Long id, Model model) {
         Products product = productsDao.getProduct(id);
@@ -73,6 +84,7 @@ public class ProductsController {
         return "/products/see";
     }
 
+    // Deletes a product
     @RequestMapping("/delete/{id}/")
     public String delete(@PathVariable Long id, Model model, RedirectAttributes redirectAttributes) {
         Products product = productsDao.getProduct(id);

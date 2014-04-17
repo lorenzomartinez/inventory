@@ -27,8 +27,11 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 
+// Spring @Configuration annotation removed the need for an XML based solution
 @Configuration
+// Packages where program classes will be saved
 @ComponentScan(basePackages = {"com.kinetic.inventory.model","com.kinetic.inventory.dao","com.kinetic.inventory.utils","com.kinetic.inventory.service"})
+// Secure information for database connection and email configuration stored here
 @PropertySource("file:${user.home}/kinetic/inventory.properties")
 public class ComponentConfig {
     

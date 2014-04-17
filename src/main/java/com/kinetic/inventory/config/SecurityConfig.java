@@ -39,11 +39,15 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+//Enable spring security
 @EnableWebSecurity
+// Spring @Configuration annotation removed the need for an XML based solution
 @Configuration
+// Will import the file with the sensitive credentials stored locally
 @Import(PropertyPlaceholderConfig.class)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
+    // Declaration of objects to use here 
     @Autowired
     private UserDetailsService userDetailsService;
     @Autowired
@@ -51,12 +55,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private LoginHandler loginHandler;
 
+    // The password encoder used to store the password encrypted
     @Bean
     public PasswordEncoder passwordEncoder() {
         PasswordEncoder encoder = new BCryptPasswordEncoder();
         return encoder;
     }
 
+    // Method to ignore configurations for the following files and directories 
     @Override
     public void configure(WebSecurity web) throws Exception {
         web.ignoring()
@@ -68,6 +74,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 );
     }
 
+    // Gives specific roles access to directories defined in this method
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
@@ -85,6 +92,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .logout().logoutUrl("/logout").logoutSuccessUrl("/").invalidateHttpSession(true);
     }
 
+    // the queries to verify roles and user accounts
     @Override
     protected void registerAuthentication(AuthenticationManagerBuilder auth) throws Exception {
         DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
@@ -99,6 +107,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     }
 
+    // return user details service using spring 
     @Override
     protected UserDetailsService userDetailsService() {
         return userDetailsService;

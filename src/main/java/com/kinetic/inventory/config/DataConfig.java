@@ -41,12 +41,17 @@ import org.springframework.orm.hibernate4.LocalSessionFactoryBean;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+/* Spring annotations to replace XML files and import the needed location of
+ * the security file with the database information
+ */
 @Configuration
 @EnableTransactionManagement
 @Import(PropertyPlaceholderConfig.class)
 public class DataConfig {
 
+    // Will allow to log certain things to the apache output log for debugging
     private static final Logger log = LoggerFactory.getLogger(DataConfig.class);
+    //Declaration of the variables
     @Value("${hibernate.dialect}")
     protected String hibernateDialect;
     @Value("${hibernate.show_sql}")
@@ -68,6 +73,9 @@ public class DataConfig {
     @Value("${jdbc.url}")
     protected String jdbcUrl;
 
+    /* Session factory bean. Set the properties, if that fails for whatever reason
+     * log the error to the server to point into the direction of the error.
+     */
     @Bean
     public SessionFactory sessionFactory() {
         log.debug("Returning initialized sessionFactory");
@@ -94,12 +102,14 @@ public class DataConfig {
         throw new RuntimeException("Couldn't configure the sessionFactory bean");
     }
 
+    // Bean for fetching JDBC connection 
     @Bean
     public DataSource dataSource() {
         LazyConnectionDataSourceProxy ds = new LazyConnectionDataSourceProxy(mainDataSource());
         return ds;
     }
-    
+
+    // Bean for database credentials
     @Bean
     public DataSource mainDataSource() {
         DriverManagerDataSource ds = new DriverManagerDataSource();
@@ -110,11 +120,15 @@ public class DataConfig {
         return ds;
     }
 
+    /* Bean for hibernate transaction manager, allows and keeps track 
+     * of multiple sessions by people accessing the app simultaneously
+     */
     @Bean
     public PlatformTransactionManager transactionManager() {
         return new HibernateTransactionManager(sessionFactory());
     }
 
+    // Bean to translate hibernate errors for spring to take care of
     @Bean
     public HibernateExceptionTranslator hibernateExceptionTranslator() {
         return new HibernateExceptionTranslator();

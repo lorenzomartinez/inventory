@@ -27,9 +27,10 @@ package com.kinetic.inventory.service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-
+// Abstract class to be used by implementation of the service
 public abstract class BaseService {
     
+    // For debugging delcared once to reuse later
     protected final transient Logger log = LoggerFactory.getLogger(getClass());
 
 }

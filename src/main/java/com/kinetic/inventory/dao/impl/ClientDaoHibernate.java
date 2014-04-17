@@ -31,28 +31,34 @@ import org.hibernate.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+// Spring annotation that indicates the following class is a data access object (DAO)
 @Repository
+// Spring annotation to load the bean definitions
 @Transactional
 public class ClientDaoHibernate extends BaseDao implements ClientDao {
 
+    // Save client method
     @Override
     public Client createClient(Client client) {
         currentSession().save(client);
         return client;
 
     }
-
+    
+    // Delete client method
     @Override
     public void deleteClient(Client client) {
         currentSession().delete(client);
     }
 
+    // Return an array of clients 
     @Override
     public List<Client> list() {
         Query query = currentSession().createQuery("select c from Client as c ");
         return query.list();
     }
 
+    // Get client by ID
     @Override
     public Client getClient(Long id) {
         Client client = (Client) currentSession().get(Client.class, id);

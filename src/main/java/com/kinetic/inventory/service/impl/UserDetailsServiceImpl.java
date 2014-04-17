@@ -32,13 +32,17 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-
+// offered as an interface stands alone in the model
 @Service
 public class UserDetailsServiceImpl extends BaseService implements UserDetailsService {
 
+    // connects to the userDao class
     @Autowired
     private UserDao userDao;
     
+    /* method that calls the method 'getUser' in the userDao class
+     * and returns the user's username/email     
+     */ 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         log.debug("Load user by username");

@@ -34,12 +34,13 @@ import org.hibernate.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-
+// Spring annotation that indicates the following class is a data access object (DAO)
 @Repository
+// Spring annotation to load the bean definitions
 @Transactional
 public class InvoiceDaoHibernate extends BaseDao implements InvoiceDao {
 
-
+    // Creates an invoice object with the date, gets and updates the client.
     @Override
     public Invoice createInvoice(Invoice invoice) {
         invoice.setDateCreated(new Date());
@@ -49,21 +50,26 @@ public class InvoiceDaoHibernate extends BaseDao implements InvoiceDao {
         currentSession().save(invoice);
         return invoice;
     }
+
+    // Method to return the invoice and is read only
     @Override
     @Transactional(readOnly = true)
     public Invoice getInvoice(Long id) {
         Invoice invoice = (Invoice) currentSession().get(Invoice.class, id);
         return invoice;
     }
-   @Override
+
+    // Method to delete invoice, deletes each item recursevely if any
+    @Override
     public void deleteInvoice(Invoice invoice) {
-       for(Item item:invoice.getItems()){
-           currentSession().delete(item);
-       }
-       
+        for (Item item : invoice.getItems()) {
+            currentSession().delete(item);
+        }
+
         currentSession().delete(invoice);
     }
 
+    // Returns the array of invoices
     @Override
     public List<Invoice> list() {
         Query query = currentSession().createQuery("select i from Invoice as i ");

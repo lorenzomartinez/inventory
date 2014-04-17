@@ -26,8 +26,10 @@ package com.kinetic.inventory.dao;
 import com.kinetic.inventory.model.Client;
 import java.util.List;
 
+// Interface for the Client object 
 public interface ClientDao {
 
+    // Declaration of methods to be used in the implementation  
     public Client createClient(Client client);
 
     public void deleteClient(Client client);

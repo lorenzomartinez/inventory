@@ -26,9 +26,10 @@ package com.kinetic.inventory.dao;
 import com.kinetic.inventory.model.Item;
 import java.util.List;
 
-
+// Interface for the Item object
 public interface ItemDao {
     
+    // Declaration of the methods to be used in the implementation
     public Item createItem(Item item);
     public Item getItem(Long id);
     public void deleteItem(Item item);

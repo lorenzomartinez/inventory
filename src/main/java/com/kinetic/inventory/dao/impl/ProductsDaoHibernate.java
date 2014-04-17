@@ -35,10 +35,13 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+// Spring annotation that indicates the following class is a data access object (DAO)
 @Repository
+// Spring annotation to load the bean definitions
 @Transactional
 public class ProductsDaoHibernate extends BaseDao implements ProductsDao {
 
+    // Read only method that returns the product
     @Override
     @Transactional(readOnly = true)
     public Products getProduct(Long id) {
@@ -46,17 +49,20 @@ public class ProductsDaoHibernate extends BaseDao implements ProductsDao {
         return product;
     }
 
+    // Method to create and save the object product
     @Override
     public Products createProduct(Products product) {
         currentSession().save(product);
         return product;
     }
 
+    // Method called when we need to delete the item
     @Override
     public void deleteProduct(Products product) {
         currentSession().delete(product);
     }
 
+    // Method called when the product needs editing and returns the updated product
     @Override
     public Products editProduct(Products product) {
         currentSession().update(product);
@@ -64,12 +70,17 @@ public class ProductsDaoHibernate extends BaseDao implements ProductsDao {
         return product;
     }
 
+    // Method that returns the array of Products
     @Override
     public List<Products> list() {
         Query query = currentSession().createQuery("select p from Products as p ");
         return query.list();
     }
 
+    /*
+     * This method allows search as you type functionality for products 
+     * by manufactuere, model, or desciption. Returns a total of 10 results
+     */
     @Override
     public List<Products> search(String term) {
         Disjunction props = Restrictions.disjunction();

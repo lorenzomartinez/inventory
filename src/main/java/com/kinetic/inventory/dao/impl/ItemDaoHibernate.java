@@ -33,11 +33,13 @@ import org.hibernate.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-
+// Spring annotation that indicates the following class is a data access object (DAO)
 @Repository
+// Spring annotation to load the bean definitions
 @Transactional
 public class ItemDaoHibernate extends BaseDao implements ItemDao {
 
+    // Returns item and the total price for that item for the cases of the quantity >= 1
     @Override
     public Item createItem(Item item) {
         currentSession().refresh(item.getInvoice());
@@ -49,6 +51,7 @@ public class ItemDaoHibernate extends BaseDao implements ItemDao {
         return item;
     }
 
+    // Method that is read only to just get the object item by its ID
     @Override
     @Transactional(readOnly = true)
     public Item getItem(Long id) {
@@ -56,6 +59,7 @@ public class ItemDaoHibernate extends BaseDao implements ItemDao {
         return item;
     }
 
+    // Deletes item from invoice but first it subtracts the total price that item or items added
     @Override
     public void deleteItem(Item item) {
         Invoice invoice = item.getInvoice();
@@ -63,6 +67,7 @@ public class ItemDaoHibernate extends BaseDao implements ItemDao {
         currentSession().delete(item);
     }
 
+    // Returns the array of items and this method is also read only
     @Override
     @Transactional(readOnly = true)
     public List<Item> list() {

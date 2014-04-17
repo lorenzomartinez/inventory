@@ -26,6 +26,9 @@ package com.kinetic.inventory.config;
 import org.springframework.core.annotation.Order;
 import org.springframework.security.web.context.AbstractSecurityWebApplicationInitializer;
 
+/* @order annotation tells the server this will be initialized before anything else
+ * which will bring all the security configurations up. 
+ */
 @Order(1)
 public class SecurityWebAppInitializer extends AbstractSecurityWebApplicationInitializer {
     

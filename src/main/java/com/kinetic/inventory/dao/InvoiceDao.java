@@ -26,9 +26,10 @@ package com.kinetic.inventory.dao;
 import com.kinetic.inventory.model.Invoice;
 import java.util.List;
 
-
+// Interface for the invoice object
 public interface InvoiceDao {
     
+    // Declaration of methods to be used in the implementation  
     public Invoice createInvoice(Invoice invoice);
     public Invoice getInvoice(Long id);
     public void deleteInvoice(Invoice invoice);

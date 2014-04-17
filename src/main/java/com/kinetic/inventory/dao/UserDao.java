@@ -21,16 +21,16 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.kinetic.inventory.dao;
 
 import com.kinetic.inventory.model.Role;
 import com.kinetic.inventory.model.User;
 import java.util.List;
 
-
+// Interface for the User object
 public interface UserDao {
-    
+
+    // Declaration of methods to be used in the implementation
     public User getUser(String username);
 
     public Role getRole(String authority);
@@ -38,7 +38,7 @@ public interface UserDao {
     public Role createRole(Role role);
 
     public User createUser(User user);
-    
+
     public void deleteUser(User user);
 
     public List<User> list();

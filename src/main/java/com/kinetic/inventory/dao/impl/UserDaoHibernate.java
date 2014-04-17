@@ -34,14 +34,17 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-
+// Spring annotation that indicates the following class is a data access object (DAO)
 @Repository
+// Spring annotation to load the bean definitions
 @Transactional
 public class UserDaoHibernate extends BaseDao implements UserDao {
 
+    // Password encoder to save password in encrypted form instead of plaintext
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    // Read only method, returns user. Has a comment for debugging purposes
     @Override
     @Transactional(readOnly = true)
     public User getUser(String username) {
@@ -50,18 +53,21 @@ public class UserDaoHibernate extends BaseDao implements UserDao {
         return user;
     }
 
+    // Read only method to read the role(s) for the specific user
     @Override
     @Transactional(readOnly = true)
     public Role getRole(String authority) {
         return (Role) currentSession().get(Role.class, authority);
     }
 
+    // Creates the role for the specific user
     @Override
     public Role createRole(Role role) {
         currentSession().save(role);
         return role;
     }
 
+    // Method that encrypts the password and creates the user
     @Override
     public User createUser(User user) {
         String hashedPassword = passwordEncoder.encode(user.getPassword());
@@ -70,12 +76,14 @@ public class UserDaoHibernate extends BaseDao implements UserDao {
         return user;
     }
 
+    // Method that returns the array of the object user
     @Override
     public List<User> list() {
         Query query = currentSession().createQuery("select u from User as u where u.accountExpired=false");
         return query.list();
     }
 
+    // The method that just simply deletes the user
     @Override
     public void deleteUser(User user) {
         currentSession().delete(user);

@@ -30,12 +30,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-
+// Defines class as a controller in the MVC architecture
 @Controller
 public class HomeController {
     
+    // declaration of 'log' for debugging purposes
     private static final Logger log = LoggerFactory.getLogger(HomeController.class);
     
+    // Method that returns us to the home page
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String home() {
         log.debug("Home");

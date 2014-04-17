@@ -35,17 +35,20 @@ import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
-
+// Configuration file can be scanned by the classpath scanning
 @Component
 public class Bootstrap implements ApplicationListener<ContextRefreshedEvent> {
     
+    // declaration of 'log' for debugging purposes
     private static final Logger log = LoggerFactory.getLogger(Bootstrap.class);
     
+    // Declarations of the userDao class and the passwordEncoder
     @Autowired
     private UserDao userDao;
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    // Method to validate roles and users, if there's no user it'll create admin
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
         log.info("Validating Roles");

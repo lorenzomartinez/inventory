@@ -57,13 +57,18 @@ import org.thymeleaf.spring3.SpringTemplateEngine;
 import org.thymeleaf.spring3.view.ThymeleafViewResolver;
 import org.thymeleaf.templateresolver.ServletContextTemplateResolver;
 
+// Spring @Configuration annotation removed the need for an XML based solution
 @Configuration
+// Enables the model view controller design
 @EnableWebMvc
+// Scan the controller classes in the web package
 @ComponentScan(basePackages = {"com.kinetic.inventory.web"})
 public class WebConfig extends WebMvcConfigurerAdapter {
     
+    // allows to send messages to the server logs for debugging purposes
     private static final Logger log = LoggerFactory.getLogger(WebConfig.class);
 
+    // spring session
     @Autowired
     private SessionFactory sessionFactory;
     
@@ -81,6 +86,9 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         return messageSource;
     }
 
+    /* Resolver, will add '.html' to the pages under the /WEB-INF/views
+     * directory. Furthermore, we're working with html5.
+    */ 
     @Bean
     public ServletContextTemplateResolver templateResolver() {
         ServletContextTemplateResolver resolver = new ServletContextTemplateResolver();
@@ -92,6 +100,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         return resolver;
     }
 
+    // Add dialects, including the dandelion data tables project
     @Bean
     public SpringTemplateEngine templateEngine() {
         SpringTemplateEngine engine = new SpringTemplateEngine();
@@ -103,6 +112,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         return engine;
     }
 
+    // Bean to use the thymeleaf templates and replace the .jsp files
     @Bean
     public ThymeleafViewResolver thymeleafViewResolver() {
         ThymeleafViewResolver resolver = new ThymeleafViewResolver();
@@ -111,9 +121,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
     }
 
     /**
-     * Supports FileUploads.
-     *
-     * @return
+     * Supports FileUploads
      */
     @Bean
     public MultipartResolver multipartResolver() {
@@ -122,6 +130,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         return multipartResolver;
     }
 
+    // Locale change interceptor returned
     @Bean
     public LocaleChangeInterceptor localeChangeInterceptor() {
         LocaleChangeInterceptor localeChangeInterceptor = new LocaleChangeInterceptor();
@@ -129,6 +138,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         return localeChangeInterceptor;
     }
 
+    // Resolves in US english
     @Bean
     public LocaleResolver localeResolver() {
         SessionLocaleResolver localeResolver = new SessionLocaleResolver();
@@ -136,6 +146,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         return localeResolver;
     }
 
+    //  adds open session in view interceptor
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         log.debug("Adding OpenSessionInViewInterceptor");
@@ -146,6 +157,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         registry.addInterceptor(localeChangeInterceptor());
     }
 
+    // define the locations for various resource directories and files
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
@@ -155,11 +167,13 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         registry.addResourceHandler("/404.html").addResourceLocations("/404.html");
     }
 
+    // Array of message converters
     @Override
     public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
         converters.add(new MappingJacksonHttpMessageConverter());
     }
 
+    // Validator for messages.properties encoded in UTF-8
     @Override
     public Validator getValidator() {
         LocalValidatorFactoryBean factory = new LocalValidatorFactoryBean();

@@ -28,10 +28,13 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 
+// Spring @Configuration annotation removed the need for an XML based solution
 @Configuration
+// Secure information for database connection and email configuration stored here
 @PropertySource("file:${user.home}/kinetic/inventory.properties")
 public class PropertyPlaceholderConfig {
     
+    // This bean defines the location of the file on the above @PropertySource annotation
     @Bean
     public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
         return new PropertySourcesPlaceholderConfigurer();

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <web-app xmlns="http://java.sun.com/xml/ns/javaee"
-	 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	 xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
-	 version="3.0">
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+         version="3.0">
     <session-config>
         <!-- pretty much self expalatory, the integer is in minutes -->
         <session-timeout>
@@ -15,4 +15,9 @@
         <error-code>404</error-code>
         <location>/404.html</location>
     </error-page>
+    <max-file-size>838860800</max-file-size>
+
+    <max-request-size>838860800</max-request-size>
+
+<file-size-threshold>5</file-size-threshold>
 </web-app>

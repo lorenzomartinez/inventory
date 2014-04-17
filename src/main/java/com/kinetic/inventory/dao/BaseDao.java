@@ -31,12 +31,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
 
+/* abstract class, will be used by implementation classes in order to not have to
+ * write these same things over and over.
+ */
 public abstract class BaseDao {
 
+    // Allows us to write information into the server log file for debugging purposes
     protected final transient Logger log = LoggerFactory.getLogger(getClass());
+    //Declares the spring session
     @Autowired
     private SessionFactory sessionFactory;
 
+    // Returns current session
     @Transactional
     protected Session currentSession() {
         return sessionFactory.getCurrentSession();

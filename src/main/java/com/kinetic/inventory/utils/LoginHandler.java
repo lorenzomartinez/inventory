@@ -34,12 +34,15 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
 
-
+// Configuration file can be scanned by the classpath scanning
 @Component
 public class LoginHandler extends SavedRequestAwareAuthenticationSuccessHandler {
 
+    // declaration of 'log' for debugging purposes
     private static final Logger log = LoggerFactory.getLogger(LoginHandler.class);
 
+    // Method sets the full name of the user on the session and also displays 
+    // information on the server logs
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws ServletException, IOException {
         super.onAuthenticationSuccess(request, response, authentication);

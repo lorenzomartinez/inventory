@@ -30,10 +30,13 @@ import org.springframework.context.annotation.Import;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 
+// Spring @Configuration annotation removed the need for an XML based solution
 @Configuration
+// Importing the file with the smtp credentials
 @Import(PropertyPlaceholderConfig.class)
 public class MailConfig {
     
+    // Declaration of the variables
     @Value("${mail.smtp.host}")
     private String mailHost;
     @Value("${mail.smtp.port}")
@@ -41,6 +44,7 @@ public class MailConfig {
     @Value("${mail.smtp.password}")
     private String mailSmtpPassword;
 
+    // Bean to set the variables needed to send the email into 'mailSender'
     @Bean
     public JavaMailSender mailSender() {
         JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
